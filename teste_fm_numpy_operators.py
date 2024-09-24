@@ -91,9 +91,9 @@ def adsr(
     return result
 
 
-modulator1 = synth_operator(0, None, 3, 1, 5 * 250.0)
-modulator2 = synth_operator(1, modulator1, 3, 1, 550.0)
-modulator3 = synth_operator(1, modulator2, 3, 1, 880.0)
-carrier = synth_operator(1, modulator3, 3, 0.5, 440.0)
-signal = adsr(3, 0.3, 0.1, 0.5, 0.2, carrier)
+modulator1 = synth_operator(0, None, 3, 1, 5 * 220.0)
+modulator2 = synth_operator(0, modulator1, 3, 1, 880.0)
+modulator3 = synth_operator(0.3, modulator2, 3, 1, 660.0)
+carrier = synth_operator(2.5, modulator3, 3, 1, 440.0)
+signal = adsr(3, 0.01, 0.2, 0.2, 0.3, carrier)
 sf.write("output.wav", signal, SAMPLE_RATE)
