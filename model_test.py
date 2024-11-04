@@ -6,6 +6,7 @@ import pandas as pd
 import random
 import tensorflow as tf
 import time
+import traceback
 
 from itertools import product
 
@@ -272,6 +273,7 @@ def main():
     )
 
     random.shuffle(pars_combinacoes)
+    print(f"Total de experimentos a executar: {len(pars_combinacoes)}")
 
     # Iniciando o MLFlow
     mlflow.set_tracking_uri(uri="http://127.0.0.1:5000")
@@ -303,14 +305,18 @@ def main():
             mlflow.log_params(params)
 
             # Treinando a rede
-            inicio = time.time()
-            model, history = train_model(
-                x=x,
-                y=y,
-                validation_split=0.2,
-                **params,
-            )
-            tempo_decorrido = time.time() - inicio
+            try:
+                inicio = time.time()
+                model, history = train_model(
+                    x=x,
+                    y=y,
+                    validation_split=0.2,
+                    **params,
+                )
+                tempo_decorrido = time.time() - inicio
+            except Exception as e:
+                print(traceback.format_exc())
+                print(f"Erro no treino: {e}")
 
             # Gravando as métricas do treino
             mlflow.log_metric("training_time", tempo_decorrido)
