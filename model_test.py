@@ -277,7 +277,7 @@ def main():
 
     # Iniciando o MLFlow
     mlflow.set_tracking_uri(uri="http://127.0.0.1:5000")
-    mlflow.set_experiment("fmsynth_model_test")
+    mlflow.set_experiment("fmsynth_model_test2")
 
     for pars in pars_combinacoes:
         try:
@@ -305,18 +305,14 @@ def main():
             mlflow.log_params(params)
 
             # Treinando a rede
-            try:
-                inicio = time.time()
-                model, history = train_model(
-                    x=x,
-                    y=y,
-                    validation_split=0.2,
-                    **params,
-                )
-                tempo_decorrido = time.time() - inicio
-            except Exception as e:
-                print(traceback.format_exc())
-                print(f"Erro no treino: {e}")
+            inicio = time.time()
+            model, history = train_model(
+                x=x,
+                y=y,
+                validation_split=0.2,
+                **params,
+            )
+            tempo_decorrido = time.time() - inicio
 
             # Gravando as métricas do treino
             mlflow.log_metric("training_time", tempo_decorrido)
@@ -350,13 +346,16 @@ def main():
                 "Training Info",
                 "Rede neural normal, com entrada de um áudio repartido em frames, para inferir os parâmetros do FMSynth (em resintetizar um áudio com paÂemtros aleatórios).",
             )
+        except Exception as e:
+            print(traceback.format_exc())
+            print(f"Erro no treino: {e}")
+        finally:
+            mlflow.end_run()
 
             # Limpeza de memória após o treino anterior
             del model  # Remove o modelo da memória
             tf.keras.backend.clear_session()  # Limpa o backend do Keras
             gc.collect()  # Opcional: chama o coletor de lixo
-        finally:
-            mlflow.end_run()
 
 
 if __name__ == "__main__":
