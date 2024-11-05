@@ -9,6 +9,7 @@ import time
 import traceback
 
 from itertools import product
+from multiprocessing import Process
 
 
 def config_gpu():
@@ -234,6 +235,73 @@ def train_model(
     )
 
 
+def run_experiment(name: str, x, y, x_t, y_t, params: dict[str, any]):
+    config_gpu()
+
+    # Iniciando o MLFlow
+    mlflow.set_tracking_uri(uri="http://127.0.0.1:5000")
+    mlflow.set_experiment(name)
+
+    try:
+        mlflow.start_run()
+
+        # Gravando os parâmetros
+        mlflow.log_params(params)
+
+        # Treinando a rede
+        inicio = time.time()
+        model, history = train_model(
+            x=x,
+            y=y,
+            validation_split=0.2,
+            **params,
+        )
+        tempo_decorrido = time.time() - inicio
+
+        # Gravando as métricas do treino
+        mlflow.log_metric("training_time", tempo_decorrido)
+
+        mse = min(history.history["mse"])
+        val_mse = min(history.history["val_mse"])
+        val_rmse = math.sqrt(val_mse)
+
+        mlflow.log_metric("mse", mse)
+        mlflow.log_metric("val_mse", val_mse)
+        mlflow.log_metric("val_rmse", val_rmse)
+
+        mae = min(history.history["mae"])
+        val_mae = min(history.history["val_mse"])
+
+        mlflow.log_metric("mae", mae)
+        mlflow.log_metric("val_mae", val_mae)
+
+        # Inferindo o teste
+        y_pred = model.predict(x_t)
+        test_mae = tf.keras.losses.MAE(y_t, y_pred).numpy().mean()
+        test_mse = tf.keras.losses.MSE(y_t, y_pred).numpy().mean()
+        test_rmse = math.sqrt(test_mse)
+
+        # Gravando as métricas de teste
+        mlflow.log_metric("test_mae", test_mae)
+        mlflow.log_metric("test_mse", test_mse)
+        mlflow.log_metric("test_rmse", test_rmse)
+
+        mlflow.set_tag(
+            "Training Info",
+            "Rede neural normal, com entrada de um áudio repartido em frames, para inferir os parâmetros do FMSynth (em resintetizar um áudio com paÂemtros aleatórios).",
+        )
+    except Exception as e:
+        print(traceback.format_exc())
+        print(f"Erro no treino: {e}")
+    finally:
+        mlflow.end_run()
+
+        # # Limpeza de memória após o treino anterior
+        # del model  # Remove o modelo da memória
+        # tf.keras.backend.clear_session()  # Limpa o backend do Keras
+        # gc.collect()  # Opcional: chama o coletor de lixo
+
+
 def main():
     # Lendo os dados
     x = np.load("x.npy")
@@ -275,89 +343,48 @@ def main():
     random.shuffle(pars_combinacoes)
     print(f"Total de experimentos a executar: {len(pars_combinacoes)}")
 
-    # Iniciando o MLFlow
-    mlflow.set_tracking_uri(uri="http://127.0.0.1:5000")
-    mlflow.set_experiment("fmsynth_model_test2")
+    # Parâmetros fixos
+    epochs = 15
+    patience = 5
 
+    # Iterando as cobinações de parâmetro
     for pars in pars_combinacoes:
+        params = {
+            "input_len": x.shape[1],
+            "input_dims": x.shape[2],
+            "output_dims": y.shape[1],
+            "activation": pars[0],
+            "bias": pars[1],
+            "kernel_regularizer": pars[2],
+            "dropout": pars[3],
+            "pooling_strategy": pars[4],
+            "normalization": pars[5],
+            "optimizer": pars[6],
+            "epochs": epochs,
+            "patience": patience,
+        }
+
         try:
-            mlflow.start_run()
-
-            epochs = 15
-            patience = 5
-
-            params = {
-                "input_len": x.shape[1],
-                "input_dims": x.shape[2],
-                "output_dims": y.shape[1],
-                "activation": pars[0],
-                "bias": pars[1],
-                "kernel_regularizer": pars[2],
-                "dropout": pars[3],
-                "pooling_strategy": pars[4],
-                "normalization": pars[5],
-                "optimizer": pars[6],
-                "epochs": epochs,
-                "patience": patience,
-            }
-
-            # Gravando os parâmetros
-            mlflow.log_params(params)
-
-            # Treinando a rede
-            inicio = time.time()
-            model, history = train_model(
-                x=x,
-                y=y,
-                validation_split=0.2,
-                **params,
+            # Criando novo processo para rodar o treino
+            processo = Process(
+                target=run_experiment,
+                args=(
+                    "fmsynth_model_test5",
+                    x,
+                    y,
+                    x_t,
+                    y_t,
+                    params,
+                ),
             )
-            tempo_decorrido = time.time() - inicio
+            processo.start()
 
-            # Gravando as métricas do treino
-            mlflow.log_metric("training_time", tempo_decorrido)
-
-            mse = min(history.history["mse"])
-            val_mse = min(history.history["val_mse"])
-            val_rmse = math.sqrt(val_mse)
-
-            mlflow.log_metric("mse", mse)
-            mlflow.log_metric("val_mse", val_mse)
-            mlflow.log_metric("val_rmse", val_rmse)
-
-            mae = min(history.history["mae"])
-            val_mae = min(history.history["val_mse"])
-
-            mlflow.log_metric("mae", mae)
-            mlflow.log_metric("val_mae", val_mae)
-
-            # Inferindo o teste
-            y_pred = model.predict(x_t)
-            test_mae = tf.keras.losses.MAE(y_t, y_pred).numpy().mean()
-            test_mse = tf.keras.losses.MSE(y_t, y_pred).numpy().mean()
-            test_rmse = math.sqrt(test_mse)
-
-            # Gravando as métricas de teste
-            mlflow.log_metric("test_mae", test_mae)
-            mlflow.log_metric("test_mse", test_mse)
-            mlflow.log_metric("test_rmse", test_rmse)
-
-            mlflow.set_tag(
-                "Training Info",
-                "Rede neural normal, com entrada de um áudio repartido em frames, para inferir os parâmetros do FMSynth (em resintetizar um áudio com paÂemtros aleatórios).",
-            )
+            # Esperando o processo terminar
+            processo.join()
         except Exception as e:
             print(traceback.format_exc())
-            print(f"Erro no treino: {e}")
-        finally:
-            mlflow.end_run()
-
-            # Limpeza de memória após o treino anterior
-            del model  # Remove o modelo da memória
-            tf.keras.backend.clear_session()  # Limpa o backend do Keras
-            gc.collect()  # Opcional: chama o coletor de lixo
+            print(f"Erro no novo processo de treino: {e}")
 
 
 if __name__ == "__main__":
-    config_gpu()
     main()
