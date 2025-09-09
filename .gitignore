@@ -1,6 +1,7 @@
 .venv/
 dataset/
 dataset_big/
+dataset_big2/
 
 *.pyc
 
