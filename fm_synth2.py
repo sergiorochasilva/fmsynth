@@ -3,7 +3,6 @@ import soundfile as sf
 import numpy as np
 from scipy.signal import resample_poly
 
-# ===== Sample rates =====
 SAMPLE_RATE_RENDER = 48000  # onde calculamos (alta taxa para reduzir aliasing)
 SAMPLE_RATE_OUT = 16000  # taxa alvo do arquivo final
 DECIM = SAMPLE_RATE_RENDER // SAMPLE_RATE_OUT  # 48k -> 16k = 3
@@ -113,7 +112,7 @@ class FMSynth:
 
         # Anti-alias + downsample: 48 kHz -> 16 kHz (decimação por 3)
         # window=('kaiser', 8.6) ~ bom compromisso de ripple/atenuação
-        out_16k = resample_poly(out_render, up=1, down=DECIM, window=("kaiser", 8.6))
+        out_16k = resample_poly(out_render, up=1, down=DECIM, window=("kaiser", 14))
         return out_16k
 
     def _synth_operator(
@@ -129,7 +128,8 @@ class FMSynth:
         t = np.arange(total_samples) / SAMPLE_RATE_RENDER
 
         # Fase da portadora
-        phase = 2 * math.pi * frequency * t
+        phase0 = np.random.uniform(0.0, 2 * np.pi)
+        phase = 2 * math.pi * frequency * t + phase0
 
         # Modulação (beta * entrada)
         if input_modulator is not None:
