@@ -61,7 +61,12 @@ class FMSynth:
         Tudo renderizado a 48 kHz e, no final, reamostrado para 16 kHz.
         """
         modulator1 = self._synth_operator(
-            0, None, audio_seconds, self.amplitude1, self.frequency1 * frequency_carrier
+            0,
+            None,
+            audio_seconds,
+            self.amplitude1,
+            self.frequency1 * frequency_carrier,
+            None,
         )
         modulator2 = self._synth_operator(
             self.beta2,
@@ -69,6 +74,7 @@ class FMSynth:
             audio_seconds,
             self.amplitude2,
             self.frequency2 * frequency_carrier,
+            self.frequency1 * frequency_carrier,
         )
         modulator3 = self._synth_operator(
             self.beta3,
@@ -76,6 +82,7 @@ class FMSynth:
             audio_seconds,
             self.amplitude3,
             self.frequency3 * frequency_carrier,
+            self.frequency2 * frequency_carrier,
         )
         modulator4 = self._synth_operator(
             self.beta4,
@@ -83,6 +90,7 @@ class FMSynth:
             audio_seconds,
             self.amplitude4,
             self.frequency4 * frequency_carrier,
+            self.frequency3 * frequency_carrier,
         )
         modulator5 = self._synth_operator(
             self.beta5,
@@ -90,6 +98,7 @@ class FMSynth:
             audio_seconds,
             self.amplitude5,
             self.frequency5 * frequency_carrier,
+            self.frequency4 * frequency_carrier,
         )
         carrier = self._synth_operator(
             self.beta_carrier,
@@ -97,6 +106,7 @@ class FMSynth:
             audio_seconds,
             self.amplitude_carrier,
             frequency_carrier,
+            self.frequency5 * frequency_carrier,
         )
 
         # ADSR no SR de renderização
@@ -113,30 +123,165 @@ class FMSynth:
         # Anti-alias + downsample: 48 kHz -> 16 kHz (decimação por 3)
         # window=('kaiser', 8.6) ~ bom compromisso de ripple/atenuação
         out_16k = resample_poly(out_render, up=1, down=DECIM, window=("kaiser", 14))
+        out_16k = out_16k / (np.max(np.abs(out_16k)) + 1e-12)
+        return out_16k
+
+    def _prepare_mod_for_beta(self, m: np.ndarray, audio_seconds: float):
+        """Remove DC, normaliza por pico (β clássico) e aplica envelope no índice."""
+        m0 = m - np.mean(m)
+        peak = np.max(np.abs(m0)) + 1e-12
+        m_norm = m0 / peak
+        idx_env = self._adsr(
+            len(m_norm),
+            audio_seconds,
+            self.attack,
+            self.decay,
+            self.sustain,
+            self.release,
+            np.ones_like(m_norm),
+        )
+        return m_norm * idx_env
+
+    def synth_alg_series3_parallel2(self, audio_seconds: int, frequency_carrier: float):
+        """
+        Topologia: (op1 -> op2 -> op3)  ||  op4  ||  op5  --> carrier
+        """
+        N = int(SAMPLE_RATE_RENDER * audio_seconds)
+        t = np.arange(N) / SAMPLE_RATE_RENDER
+
+        # --- Série: op1 -> op2 -> op3
+        m1 = self._synth_operator(
+            0.0,
+            None,
+            audio_seconds,
+            self.amplitude1,
+            self.frequency1 * frequency_carrier,
+            None,
+        )
+        m2 = self._synth_operator(
+            self.beta2,
+            m1,
+            audio_seconds,
+            self.amplitude2,
+            self.frequency2 * frequency_carrier,
+            self.frequency1 * frequency_carrier,
+        )
+        m3 = self._synth_operator(
+            self.beta3,
+            m2,
+            audio_seconds,
+            self.amplitude3,
+            self.frequency3 * frequency_carrier,
+            self.frequency2 * frequency_carrier,
+        )
+
+        # --- Paralelo: op4 e op5 (isolados, sem modulador de entrada)
+        p4 = self._synth_operator(
+            0.0,
+            None,
+            audio_seconds,
+            self.amplitude4,
+            self.frequency4 * frequency_carrier,
+            None,
+        )
+        p5 = self._synth_operator(
+            0.0,
+            None,
+            audio_seconds,
+            self.amplitude5,
+            self.frequency5 * frequency_carrier,
+            None,
+        )
+
+        # --- Carrier: soma das três modulações (m3, p4, p5)
+        phase = 2 * np.pi * frequency_carrier * t
+
+        # 1) cadeia (usa beta_carrier e f_m = f3)
+        m3_prep = self._prepare_mod_for_beta(m3, audio_seconds)
+        delta_f_chain = self.beta_carrier * (self.frequency3 * frequency_carrier)
+        phase += 2 * np.pi * (delta_f_chain / SAMPLE_RATE_RENDER) * np.cumsum(m3_prep)
+
+        # 2) paralelo op4 (usa beta4 e f_m = f4)
+        p4_prep = self._prepare_mod_for_beta(p4, audio_seconds)
+        delta_f_p4 = self.beta4 * (self.frequency4 * frequency_carrier)
+        phase += 2 * np.pi * (delta_f_p4 / SAMPLE_RATE_RENDER) * np.cumsum(p4_prep)
+
+        # 3) paralelo op5 (usa beta5 e f_m = f5)
+        p5_prep = self._prepare_mod_for_beta(p5, audio_seconds)
+        delta_f_p5 = self.beta5 * (self.frequency5 * frequency_carrier)
+        phase += 2 * np.pi * (delta_f_p5 / SAMPLE_RATE_RENDER) * np.cumsum(p5_prep)
+
+        # sinal da portadora
+        carrier = np.sin(phase) * self.amplitude_carrier
+
+        # ADSR na saída
+        out_render = self._adsr(
+            len(carrier),
+            audio_seconds,
+            self.attack,
+            self.decay,
+            self.sustain,
+            self.release,
+            carrier,
+        )
+
+        # Downsample + normalização de segurança
+        out_16k = resample_poly(out_render, up=1, down=DECIM, window=("kaiser", 14))
+        out_16k = out_16k / (np.max(np.abs(out_16k)) + 1e-12)
         return out_16k
 
     def _synth_operator(
         self,
         beta_modulator: float,
-        input_modulator: np.ndarray,
+        input_modulator: np.ndarray | None,
         audio_seconds: int,
         amplitude: float,
         frequency: float,
+        frequency_modulator: float | None,
     ):
         # Tempo em SR de renderização
         total_samples = SAMPLE_RATE_RENDER * audio_seconds
         t = np.arange(total_samples) / SAMPLE_RATE_RENDER
 
         # Fase da portadora
-        phase0 = np.random.uniform(0.0, 2 * np.pi)
-        phase = 2 * math.pi * frequency * t + phase0
+        phase = 2 * np.pi * frequency * t
 
         # Modulação (beta * entrada)
         if input_modulator is not None:
-            phase = phase + beta_modulator * input_modulator
+            # Verificando se frequency_modulator foi informado
+            if frequency_modulator is None:
+                raise ValueError(
+                    "frequency_modulator deve ser informado quando há modulador."
+                )
 
-        samples = np.sin(phase) * amplitude
-        return samples
+            # Calculando o ganho de modulação em frequência (delta_f)
+            delta_f = beta_modulator * frequency_modulator
+
+            # Centraliza o modulador em zero (para evitar drift na fase)
+            m0 = input_modulator - np.mean(input_modulator)
+
+            # normaliza o modulador para que β seja estável (independente da amplitude real)
+            peak = np.max(np.abs(m0)) + 1e-12
+            m_norm = m0 / peak
+
+            # phase = phase + beta_modulator * input_modulator
+            idx_env = self._adsr(
+                len(m_norm),
+                audio_seconds,
+                self.attack,
+                self.decay,
+                self.sustain,
+                self.release,
+                np.ones_like(m_norm),
+            )
+
+            # Modulador final
+            m = m_norm * idx_env
+
+            # Integração discreta para obter a fase a partir de delta_f
+            phase += 2 * np.pi * (delta_f / SAMPLE_RATE_RENDER) * np.cumsum(m)
+
+        return np.sin(phase) * amplitude
 
     def _adsr(
         self,
@@ -209,7 +354,7 @@ if __name__ == "__main__":
     frequency_carrier = (
         440  # lembrete: ao reamostrar para 16 kHz, o que passar de ~8 kHz será filtrado
     )
-    signal_16k = fm_synth.synth_alg1(audio_seconds, frequency_carrier)
+    signal_16k = fm_synth.synth_alg_series3_parallel2(audio_seconds, frequency_carrier)
 
     # Salva em 16 kHz
     sf.write("output2.wav", signal_16k, SAMPLE_RATE_OUT)

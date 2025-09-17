@@ -2,6 +2,8 @@
 dataset/
 dataset_big/
 dataset_big2/
+nsynth-test/
+nsynth-pred/
 
 *.pyc
 

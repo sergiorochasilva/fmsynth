@@ -10,7 +10,7 @@ NYQ_RENDER = SAMPLE_RATE_RENDER / 2.0  # 24000 (para 48k)
 NYQ_OUT = SAMPLE_RATE_OUT / 2.0  # 8000  (para 16k)
 
 duracao_amostras = 4
-tamanho_dataset = 20000
+tamanho_dataset = 5000
 precisao_decimal = 3
 
 max_frequency = 6000
@@ -68,6 +68,53 @@ def is_valid_carrier(ratio_last, beta_carrier, fc):
     return f_max < SAFE_OUT
 
 
+choices = [
+    (0.0, 0.5, 0.2),  # 20% chance: suave/quase puro
+    (0.5, 3.0, 0.6),  # 60% chance: zona musical
+    (3.0, 8.0, 0.2),  # 20% chance: agressivo/metálico
+]
+
+
+def sample_beta():
+    x = random.random()
+    if x < 0.2:
+        return random.uniform(0.0, 0.5)
+    elif x < 0.8:
+        return random.uniform(0.5, 3.0)
+    else:
+        return random.uniform(3.0, 8.0)
+
+
+RATIOS_DISCRETOS = [
+    1 / 8,
+    1 / 6,
+    1 / 5,
+    1 / 4,
+    1 / 3,
+    1 / 2,
+    2 / 3,
+    1,
+    3 / 2,
+    2,
+    3,
+    4,
+    5,
+    6,
+    8,
+]
+
+
+def sample_ratio(min_ratio=1 / 8, max_ratio=8):
+    """Mistura:
+    - 70% de chance: ratios discretos musicais
+    - 30% de chance: contínuo log-uniforme entre [1/8, 8]
+    """
+    if random.random() < 0.7:
+        return random.choice(RATIOS_DISCRETOS)
+    else:
+        return uniform_log(min_ratio, max_ratio)
+
+
 def sort_parameters(frequencia_base: float):
     i = 0
     while True:
@@ -76,10 +123,12 @@ def sort_parameters(frequencia_base: float):
         if i > 200:
             raise RuntimeError("Não foi possível sortear parâmetros válidos")
 
-        ratio = uniform_log(min_ratio, max_ratio)
+        # ratio = uniform_log(min_ratio, max_ratio)
+        ratio = sample_ratio(min_ratio, max_ratio)
 
+        beta = sample_beta()
         # beta = random.uniform(min_beta, max_beta)
-        beta = 0.0 if random.random() < 0.3 else random.uniform(min_beta, max_beta)
+        # beta = 0.0 if random.random() < 0.3 else random.uniform(min_beta, max_beta)
         amplitude = random.uniform(min_amplitude, max_amplitude)
         # frequency = round(ratio * frequencia_base, precisao_decimal)
         frequency = ratio
@@ -94,7 +143,13 @@ def sort_parameters(frequencia_base: float):
 
 with open(f"{output_dir}/parameters.json", "w") as f:
     f.write("[\n")
-    for i in range(tamanho_dataset):
+
+    i = 0
+    while True:
+        if i >= tamanho_dataset:
+            break
+        i += 1
+
         try:
             print(f"Gerando amostra {i + 1} de {tamanho_dataset}...")
             # Sorteando uma frequencia báse, na faixa audível humana
@@ -160,7 +215,7 @@ with open(f"{output_dir}/parameters.json", "w") as f:
 
             # Imprimindo na saída
             f.write(data)
-            if i < tamanho_dataset - 1:
+            if i < tamanho_dataset:
                 f.write(",\n")
             else:
                 f.write("\n")
@@ -188,7 +243,9 @@ with open(f"{output_dir}/parameters.json", "w") as f:
                 sustain=sustain,
                 release=release,
             )
-            signal = fm_synth.synth_alg1(duracao_amostras, frequencia_base)
+            signal = fm_synth.synth_alg_series3_parallel2(
+                duracao_amostras, frequencia_base
+            )
 
             # Normalizando o pico
             peak = np.max(np.abs(signal))
