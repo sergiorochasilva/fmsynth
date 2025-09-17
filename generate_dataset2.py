@@ -17,7 +17,7 @@ max_frequency = 6000
 min_frequency = 20
 
 min_effective_beta = 0
-max_effective_beta = 4
+max_effective_beta = 5
 
 min_ratio = 1 / 8  # Evitar LFO (que gera mais vibrado do que variação de timbre)
 max_ratio = 8  # Evitar aliasing
@@ -46,8 +46,9 @@ def is_valid(frequency, beta, amplitude, frequencia_base):
     if freq_real >= SAFE_RENDER:
         return False
 
-    # (B) beta efetivo dentro do envelope
-    effective_beta = beta * amplitude
+    # Beta efetivo dentro do envelope
+    # effective_beta = beta * amplitude
+    effective_beta = beta
     if not (min_effective_beta <= effective_beta <= max_effective_beta):
         return False
 
@@ -60,12 +61,18 @@ def is_valid(frequency, beta, amplitude, frequencia_base):
     return True
 
 
-def is_valid_carrier(ratio_last, beta_carrier, fc):
-    fm_last = ratio_last * fc
-
-    f_max = fc + (beta_carrier + 1.0) * fm_last
-
+def is_valid_carrier(r3, r4, r5, beta_carrier, beta4, beta5, fc):
+    fm3, fm4, fm5 = r3 * fc, r4 * fc, r5 * fc
+    f_max = fc + (beta_carrier + 1) * fm3 + (beta4 + 1) * fm4 + (beta5 + 1) * fm5
     return f_max < SAFE_OUT
+
+
+# def is_valid_carrier(ratio_last, beta_carrier, fc):
+#     fm_last = ratio_last * fc
+
+#     f_max = fc + (beta_carrier + 1.0) * fm_last
+
+#     return f_max < SAFE_OUT
 
 
 choices = [
@@ -109,10 +116,34 @@ def sample_ratio(min_ratio=1 / 8, max_ratio=8):
     - 70% de chance: ratios discretos musicais
     - 30% de chance: contínuo log-uniforme entre [1/8, 8]
     """
-    if random.random() < 0.7:
+    if random.random() < 0.9:
         return random.choice(RATIOS_DISCRETOS)
     else:
         return uniform_log(min_ratio, max_ratio)
+
+
+def keyscale_beta(
+    beta_base: float,
+    fc: float,
+    fc_ref: float = 440.0,
+    strength: float = 0.5,  # 0=no scaling, 1=total
+    beta_min: float = 0.0,
+    beta_max: float = 8.0,
+) -> float:
+    """
+    Aplica key-scaling em β:
+    β'(fc) = ((β_base + 1) * (fc_ref/fc)**strength) - 1
+    Clamp em [beta_min, beta_max].
+    """
+    fc_eff = max(fc, 60.0)  # evita exagero abaixo de ~A1
+    factor = (fc_ref / fc_eff) ** strength
+    beta_scaled = (beta_base + 1.0) * factor - 1.0
+    # clamp
+    if beta_scaled < beta_min:
+        beta_scaled = beta_min
+    if beta_scaled > beta_max:
+        beta_scaled = beta_max
+    return beta_scaled
 
 
 def sort_parameters(frequencia_base: float):
@@ -126,7 +157,16 @@ def sort_parameters(frequencia_base: float):
         # ratio = uniform_log(min_ratio, max_ratio)
         ratio = sample_ratio(min_ratio, max_ratio)
 
-        beta = sample_beta()
+        beta_base = sample_beta()
+        beta = keyscale_beta(
+            beta_base,
+            fc=frequencia_base,
+            fc_ref=440.0,
+            strength=0.55,  # ajuste fino aqui
+            beta_min=min_beta,
+            beta_max=max_beta,
+        )
+
         # beta = random.uniform(min_beta, max_beta)
         # beta = 0.0 if random.random() < 0.3 else random.uniform(min_beta, max_beta)
         amplitude = random.uniform(min_amplitude, max_amplitude)
@@ -163,15 +203,47 @@ with open(f"{output_dir}/parameters.json", "w") as f:
             beta4, amplitude4, frequency4 = sort_parameters(frequencia_base)
             beta5, amplitude5, frequency5 = sort_parameters(frequencia_base)
 
+            active = random.choice([1, 2, 3])
+            idxs = random.sample([2, 3, 4, 5], k=active)
+            for j in [2, 3, 4, 5]:
+                if j not in idxs:
+                    # zere este beta (sintetizador vai ignorar esta modulação)
+                    if j == 2:
+                        beta2 = 0.0
+                    if j == 3:
+                        beta3 = 0.0
+                    if j == 4:
+                        beta4 = 0.0
+                    if j == 5:
+                        beta5 = 0.0
+
             j = 0
             while True:
                 j += 1
                 if j > 200:
                     raise RuntimeError("Não foi possível sortear parâmetros válidos")
 
-                beta_carrier, amplitude_carrier, _ = sort_parameters(frequencia_base)
+                amplitude_carrier = random.uniform(min_amplitude, max_amplitude)
+                beta_carrier_base = sample_beta()
+                beta_carrier = keyscale_beta(
+                    beta_carrier_base,
+                    fc=frequencia_base,
+                    fc_ref=440.0,
+                    strength=0.55,
+                    beta_min=min_beta,
+                    beta_max=max_beta,
+                )
 
-                if not is_valid_carrier(frequency5, beta_carrier, frequencia_base):
+                # if not is_valid_carrier(frequency5, beta_carrier, frequencia_base):
+                if not is_valid_carrier(
+                    frequency3,
+                    frequency4,
+                    frequency5,
+                    beta_carrier,
+                    beta4,
+                    beta5,
+                    frequencia_base,
+                ):
                     continue
 
                 break
@@ -188,19 +260,14 @@ with open(f"{output_dir}/parameters.json", "w") as f:
             data = {
                 "id": i,
                 "frequencia_base": round(frequencia_base, precisao_decimal),
-                "amplitude1": round(amplitude1, precisao_decimal),
                 "frequency1": round(frequency1, precisao_decimal),
                 "beta2": round(beta2, precisao_decimal),
-                "amplitude2": round(amplitude2, precisao_decimal),
                 "frequency2": round(frequency2, precisao_decimal),
                 "beta3": round(beta3, precisao_decimal),
-                "amplitude3": round(amplitude3, precisao_decimal),
                 "frequency3": round(frequency3, precisao_decimal),
                 "beta4": round(beta4, precisao_decimal),
-                "amplitude4": round(amplitude4, precisao_decimal),
                 "frequency4": round(frequency4, precisao_decimal),
                 "beta5": round(beta5, precisao_decimal),
-                "amplitude5": round(amplitude5, precisao_decimal),
                 "frequency5": round(frequency5, precisao_decimal),
                 "beta_carrier": round(beta_carrier, precisao_decimal),
                 "amplitude_carrier": round(amplitude_carrier, precisao_decimal),
@@ -222,19 +289,19 @@ with open(f"{output_dir}/parameters.json", "w") as f:
 
             # Sintetizando o sinal
             fm_synth = FMSynth(
-                amplitude1=amplitude1,
+                amplitude1=1.0,
                 frequency1=frequency1,
                 beta2=beta2,
-                amplitude2=amplitude2,
+                amplitude2=1.0,
                 frequency2=frequency2,
                 beta3=beta3,
-                amplitude3=amplitude3,
+                amplitude3=1.0,
                 frequency3=frequency3,
                 beta4=beta4,
-                amplitude4=amplitude4,
+                amplitude4=1.0,
                 frequency4=frequency4,
                 beta5=beta5,
-                amplitude5=amplitude5,
+                amplitude5=1.0,
                 frequency5=frequency5,
                 beta_carrier=beta_carrier,
                 amplitude_carrier=amplitude_carrier,

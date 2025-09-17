@@ -35,6 +35,15 @@ print(samples.shape)
 x = np.array(samples[0].values.tolist())
 print(x.shape)
 
+# Normalizando o pico de todas as amostras
+for i in range(x.shape[0]):
+    signal = x[i]
+    peak = np.max(np.abs(signal))
+    if peak > 0:
+        signal = 0.891 * signal / peak
+    x[i] = signal
+
+# Ajustando o tamanho das amostras para 1 segundo (16000 amostras)
 x = x.reshape((x.shape[0], x.shape[1], 1))
 print(x.shape)
 
@@ -49,19 +58,14 @@ y_pred = pd.DataFrame(y_pred)
 # Convertendo o nome das colunas para os nomes dos parâmetros do sintetizador
 column_names = [
     "frequencia_base",
-    "amplitude1",
     "frequency1",
     "beta2",
-    "amplitude2",
     "frequency2",
     "beta3",
-    "amplitude3",
     "frequency3",
     "beta4",
-    "amplitude4",
     "frequency4",
     "beta5",
-    "amplitude5",
     "frequency5",
     "beta_carrier",
     "amplitude_carrier",
@@ -74,5 +78,5 @@ y_pred.columns = column_names
 
 ## Escrevendo os parâmetros preditos em arquivo JSON
 params_list = y_pred.to_dict(orient="records")
-with open("nsynth-pred/params_pred.json", "w") as f:
+with open("nsynth-pred/_params_pred.json", "w") as f:
     json.dump(params_list, f, indent=4)

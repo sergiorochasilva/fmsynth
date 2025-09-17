@@ -2,6 +2,7 @@ import math
 import soundfile as sf
 import numpy as np
 from scipy.signal import resample_poly
+from scipy.signal import butter, lfilter
 
 SAMPLE_RATE_RENDER = 48000  # onde calculamos (alta taxa para reduzir aliasing)
 SAMPLE_RATE_OUT = 16000  # taxa alvo do arquivo final
@@ -126,21 +127,54 @@ class FMSynth:
         out_16k = out_16k / (np.max(np.abs(out_16k)) + 1e-12)
         return out_16k
 
+    def _tilt(self, x, sr=SAMPLE_RATE_RENDER, fc=5500.0):
+        # 1 pólo baixo (Butter 1ª ordem) para “amaciar” a borda
+        b, a = butter(1, fc / (sr / 2), btype="low", analog=False)
+        return lfilter(b, a, x)
+
+    def _index_env(self, N, sr, a=0.012, d=0.18, s=0.45, r=0.20):
+        A = int(round(sr * a))
+        D = int(round(sr * d))
+        R = int(round(sr * r))
+        S = max(N - (A + D + R), 0)
+
+        # exponenciais simples (soam mais naturais que linear)
+        def seg(n0, n1, y0, y1):
+            n = n1 - n0
+            if n <= 0:
+                return np.zeros(0)
+            x = np.linspace(0, 1, n, endpoint=False)
+            # curva exponencial suave
+            return y0 * ((y1 / y0) ** x)
+
+        env = np.concatenate(
+            [
+                seg(0, A, 1e-3, 1.0),  # ataque rápido
+                seg(0, D, 1.0, s),  # decay para sustain
+                np.full(S, s, dtype=np.float64),
+                seg(0, R, s, 1e-3),
+            ]
+        )
+        return env
+
     def _prepare_mod_for_beta(self, m: np.ndarray, audio_seconds: float):
         """Remove DC, normaliza por pico (β clássico) e aplica envelope no índice."""
         m0 = m - np.mean(m)
         peak = np.max(np.abs(m0)) + 1e-12
         m_norm = m0 / peak
-        idx_env = self._adsr(
-            len(m_norm),
-            audio_seconds,
-            self.attack,
-            self.decay,
-            self.sustain,
-            self.release,
-            np.ones_like(m_norm),
-        )
-        return m_norm * idx_env
+        # idx_env = self._adsr(
+        #     len(m_norm),
+        #     audio_seconds,
+        #     self.attack,
+        #     self.decay,
+        #     self.sustain,
+        #     self.release,
+        #     np.ones_like(m_norm),
+        # )
+        idx_env = self._index_env(len(m_norm), SAMPLE_RATE_RENDER)
+        m = m_norm * idx_env
+        m -= np.mean(m)
+        return m
 
     def synth_alg_series3_parallel2(self, audio_seconds: int, frequency_carrier: float):
         """
@@ -195,21 +229,25 @@ class FMSynth:
 
         # --- Carrier: soma das três modulações (m3, p4, p5)
         phase = 2 * np.pi * frequency_carrier * t
+        # phase += np.random.uniform(0.0, 2 * np.pi)
 
         # 1) cadeia (usa beta_carrier e f_m = f3)
         m3_prep = self._prepare_mod_for_beta(m3, audio_seconds)
         delta_f_chain = self.beta_carrier * (self.frequency3 * frequency_carrier)
-        phase += 2 * np.pi * (delta_f_chain / SAMPLE_RATE_RENDER) * np.cumsum(m3_prep)
+        # phase += 2 * np.pi * (delta_f_chain / SAMPLE_RATE_RENDER) * np.cumsum(m3_prep)
+        phase += self.beta_carrier * m3_prep
 
         # 2) paralelo op4 (usa beta4 e f_m = f4)
         p4_prep = self._prepare_mod_for_beta(p4, audio_seconds)
         delta_f_p4 = self.beta4 * (self.frequency4 * frequency_carrier)
-        phase += 2 * np.pi * (delta_f_p4 / SAMPLE_RATE_RENDER) * np.cumsum(p4_prep)
+        # phase += 2 * np.pi * (delta_f_p4 / SAMPLE_RATE_RENDER) * np.cumsum(p4_prep)
+        phase += self.beta4 * p4_prep
 
         # 3) paralelo op5 (usa beta5 e f_m = f5)
         p5_prep = self._prepare_mod_for_beta(p5, audio_seconds)
         delta_f_p5 = self.beta5 * (self.frequency5 * frequency_carrier)
-        phase += 2 * np.pi * (delta_f_p5 / SAMPLE_RATE_RENDER) * np.cumsum(p5_prep)
+        # phase += 2 * np.pi * (delta_f_p5 / SAMPLE_RATE_RENDER) * np.cumsum(p5_prep)
+        phase += self.beta5 * p5_prep
 
         # sinal da portadora
         carrier = np.sin(phase) * self.amplitude_carrier
@@ -226,6 +264,7 @@ class FMSynth:
         )
 
         # Downsample + normalização de segurança
+        out_render = self._tilt(out_render, SAMPLE_RATE_RENDER, fc=5500.0)
         out_16k = resample_poly(out_render, up=1, down=DECIM, window=("kaiser", 14))
         out_16k = out_16k / (np.max(np.abs(out_16k)) + 1e-12)
         return out_16k
@@ -245,6 +284,8 @@ class FMSynth:
 
         # Fase da portadora
         phase = 2 * np.pi * frequency * t
+        # phase0 = np.random.uniform(0.0, 2 * np.pi)
+        # phase = phase + phase0
 
         # Modulação (beta * entrada)
         if input_modulator is not None:
@@ -275,11 +316,12 @@ class FMSynth:
                 np.ones_like(m_norm),
             )
 
-            # Modulador final
+            # # Modulador final
             m = m_norm * idx_env
 
             # Integração discreta para obter a fase a partir de delta_f
-            phase += 2 * np.pi * (delta_f / SAMPLE_RATE_RENDER) * np.cumsum(m)
+            # phase += 2 * np.pi * (delta_f / SAMPLE_RATE_RENDER) * np.cumsum(m)
+            phase += beta_modulator * m
 
         return np.sin(phase) * amplitude
 
