@@ -10,12 +10,12 @@ import tensorflow as tf
 import keras
 
 # Carregando o modelo salvo
-model = keras.models.load_model("model_conv_1_sec_v1_0.keras")
+model = keras.models.load_model("model_conv_1_sec_v1_4.keras")
 
 # Carregando o scaler_y
 import joblib
 
-scaler_y = joblib.load("scaler_y_conv_1_sec_v1_0.save")
+scaler_y = joblib.load("scaler_y_conv_1_sec_v1_4.save")
 
 ## Carregando o dataset (lendo todos os arquivos .wav da pasta 'nsynth-test/audio')
 import os

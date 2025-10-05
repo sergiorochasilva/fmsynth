@@ -98,54 +98,13 @@ base_path_test = "nsynth-test/audio"
 file_list = [f for f in os.listdir(base_path_pred) if f.endswith(".wav")]
 
 # Comparação do original do NSynth versus o sintetizado comp apoio do modelo
-# results = []
-
-# for file_name in file_list:
-#     print(file_name)
-
-#     f_pred = os.path.join(base_path_pred, file_name)
-#     f_test = os.path.join(base_path_test, file_name)
-
-#     fft_dist = fft_distance(f_pred, f_test)
-#     stft_dist = stft_distance(f_pred, f_test)
-#     logmel_raw, logmel_norm, num_elements = log_mel_spectrogram_distance(f_pred, f_test)
-
-#     results.append(
-#         {
-#             "file_name": file_name,
-#             "fft_distance": fft_dist,
-#             "stft_distance": stft_dist,
-#             "log_mel_spectrogram_distance_raw": logmel_raw,
-#             "log_mel_spectrogram_distance_normalized": logmel_norm,
-#             "log_mel_num_elements": num_elements,
-#         }
-#     )
-
-# Baseline de comparação entre duas amostras quaisquer
-# with open("distances.json", "w") as f:
-#     json.dump(results, f, indent=4)
-
-# f_pred = os.path.join(base_path_test, "keyboard_electronic_098-090-100.wav")
-# f_test = os.path.join(base_path_test, "brass_acoustic_046-092-075.wav")
-
-# fft_dist = fft_distance(f_pred, f_test)
-# stft_dist = stft_distance(f_pred, f_test)
-# logmel_raw, logmel_norm, num_elements = log_mel_spectrogram_distance(f_pred, f_test)
-
-# print("FFT Distance:", fft_dist)
-# print("STFT Distance:", stft_dist)
-# print("Log Mel Distance (raw):", logmel_raw)
-# print("Log Mel Distance (normalized):", logmel_norm)
-# print("Log Mel Number of Elements:", num_elements)
-
-# Comparação da Nsynth com um baseline senoide 440 Hz
 results = []
 
 for file_name in file_list:
     print(file_name)
 
-    f_pred = os.path.join(base_path_test, file_name)
-    f_test = "output2.wav"
+    f_pred = os.path.join(base_path_pred, file_name)
+    f_test = os.path.join(base_path_test, file_name)
 
     fft_dist = fft_distance(f_pred, f_test)
     stft_dist = stft_distance(f_pred, f_test)
@@ -162,5 +121,46 @@ for file_name in file_list:
         }
     )
 
-with open("distances_baseline.json", "w") as f:
+with open("distances_1_4.json", "w") as f:
     json.dump(results, f, indent=4)
+
+# Baseline de comparação entre duas amostras quaisquer
+# f_pred = os.path.join(base_path_test, "keyboard_electronic_098-090-100.wav")
+# f_test = os.path.join(base_path_test, "brass_acoustic_046-092-075.wav")
+
+# fft_dist = fft_distance(f_pred, f_test)
+# stft_dist = stft_distance(f_pred, f_test)
+# logmel_raw, logmel_norm, num_elements = log_mel_spectrogram_distance(f_pred, f_test)
+
+# print("FFT Distance:", fft_dist)
+# print("STFT Distance:", stft_dist)
+# print("Log Mel Distance (raw):", logmel_raw)
+# print("Log Mel Distance (normalized):", logmel_norm)
+# print("Log Mel Number of Elements:", num_elements)
+
+# Comparação da Nsynth com um baseline senoide 440 Hz
+# results = []
+
+# for file_name in file_list:
+#     print(file_name)
+
+#     f_pred = os.path.join(base_path_test, file_name)
+#     f_test = "output2.wav"
+
+#     fft_dist = fft_distance(f_pred, f_test)
+#     stft_dist = stft_distance(f_pred, f_test)
+#     logmel_raw, logmel_norm, num_elements = log_mel_spectrogram_distance(f_pred, f_test)
+
+#     results.append(
+#         {
+#             "file_name": file_name,
+#             "fft_distance": fft_dist,
+#             "stft_distance": stft_dist,
+#             "log_mel_spectrogram_distance_raw": logmel_raw,
+#             "log_mel_spectrogram_distance_normalized": logmel_norm,
+#             "log_mel_num_elements": num_elements,
+#         }
+#     )
+
+# with open("distances_baseline.json", "w") as f:
+#     json.dump(results, f, indent=4)

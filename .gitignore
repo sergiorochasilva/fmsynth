@@ -12,3 +12,8 @@ x_t.npy
 y.csv
 y_t.csv
 .qodo
+
+*.keras
+*.joblib
+*.save
+*.h5

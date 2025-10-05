@@ -45,7 +45,7 @@ def config_gpu():
 def regressor(
     input_dims,
     output_dims,
-    activation_regressor,
+    activation,
     bias_regressor,
     dropout_regressor: float,
     kernel_regularizer_regressor: str,
@@ -54,14 +54,14 @@ def regressor(
 
     x_0 = Dense(
         int(input_dims / 2),
-        activation=activation_regressor,
+        activation=activation,
         use_bias=bias_regressor,
         kernel_regularizer=kernel_regularizer_regressor,
     )(input_layer)
     x_0 = Dropout(dropout_regressor)(x_0)
-    x_2 = Dense(
-        int(input_dims / 4), activation=activation_regressor, use_bias=bias_regressor
-    )(x_0)
+    x_2 = Dense(int(input_dims / 4), activation=activation, use_bias=bias_regressor)(
+        x_0
+    )
     saidas = Dense(
         output_dims, activation=None, name="regressor_saidas", use_bias=bias_regressor
     )(x_2)
@@ -73,10 +73,9 @@ def build_model(
     input_len,
     input_dims,
     output_dims,
-    activation_cnn,
+    activation,
     bias_cnn,
     kernel_regularizer_cnn,
-    activation_regressor,
     bias_regressor,
     dropout_regressor,
     kernel_regularizer_regressor,
@@ -93,7 +92,7 @@ def build_model(
         filters=8,
         kernel_size=4,
         strides=1,
-        activation=activation_cnn,
+        activation=activation,
         input_shape=(input_len, 1),
         kernel_regularizer=kernel_regularizer_cnn,
         use_bias=bias_cnn,
@@ -107,7 +106,7 @@ def build_model(
         filters=16,
         kernel_size=8,
         strides=1,
-        activation=activation_cnn,
+        activation=activation,
         input_shape=(input_len, 1),
         kernel_regularizer=kernel_regularizer_cnn,
         use_bias=bias_cnn,
@@ -121,7 +120,7 @@ def build_model(
         filters=32,
         kernel_size=16,
         strides=1,
-        activation=activation_cnn,
+        activation=activation,
         input_shape=(input_len, 1),
         kernel_regularizer=kernel_regularizer_cnn,
         use_bias=bias_cnn,
@@ -139,7 +138,7 @@ def build_model(
     regressao = regressor(
         features1_flatten1_normalized.shape[1],
         output_dims,
-        activation_regressor,
+        activation,
         bias_regressor,
         dropout_regressor,
         kernel_regularizer_regressor,
@@ -161,10 +160,9 @@ def train_model(
     input_len: int,
     input_dims: int,  # x.shape[2]
     output_dims: int,  # y.shape[1]
-    activation_cnn,
+    activation,
     bias_cnn,
     kernel_regularizer_cnn,
-    activation_regressor,
     bias_regressor,
     dropout_regressor,
     kernel_regularizer_regressor,
@@ -178,10 +176,9 @@ def train_model(
         input_len,
         input_dims,
         output_dims,
-        activation_cnn,
+        activation,
         bias_cnn,
         kernel_regularizer_cnn,
-        activation_regressor,
         bias_regressor,
         dropout_regressor,
         kernel_regularizer_regressor,
@@ -282,33 +279,19 @@ def main():
     x = x.reshape((x.shape[0], x.shape[1], 1))
 
     # Definindo as possíves combinações de parâmetros para o GridSearch
-    activation_cnn = [
+    activation = [
         "gelu",
         "swish",
         "elu",
         "relu",
-        "tanh",
         "selu",
         "silu",
-        "exponential",
     ]
     bias_cnn = [True, False]
     kernel_regularizer_cnn = [None, "l1", "l2"]
-
-    activation_regressor = [
-        "gelu",
-        "swish",
-        "elu",
-        "relu",
-        "tanh",
-        "selu",
-        "silu",
-        "exponential",
-    ]
     bias_regressor = [True, False]
     dropout_regressor = [0, 0.2, 0.3, 0.5]
     kernel_regularizer_regressor = [None, "l1", "l2"]
-
     optimizer = [
         "AdamW",
         "RMSprop",
@@ -320,10 +303,9 @@ def main():
 
     pars_combinacoes = list(
         product(
-            activation_cnn,
+            activation,
             bias_cnn,
             kernel_regularizer_cnn,
-            activation_regressor,
             bias_regressor,
             dropout_regressor,
             kernel_regularizer_regressor,
@@ -335,7 +317,7 @@ def main():
     print(f"Total de experimentos a executar: {len(pars_combinacoes)}")
 
     # Parâmetros fixos
-    epochs = 50
+    epochs = 30
     patience = 5
     validation_split = 0.2
 
@@ -349,17 +331,16 @@ def main():
             "input_len": x.shape[1],
             "input_dims": x.shape[2],
             "output_dims": y.shape[1],
-            "activation_cnn": pars[0],
+            "activation": pars[0],
             "bias_cnn": pars[1],
             "kernel_regularizer_cnn": pars[2],
-            "activation_regressor": pars[3],
-            "bias_regressor": pars[4],
-            "dropout_regressor": pars[5],
-            "kernel_regularizer_regressor": pars[6],
+            "bias_regressor": pars[3],
+            "dropout_regressor": pars[4],
+            "kernel_regularizer_regressor": pars[5],
             "epochs": epochs,
             "patience": patience,
             "validation_split": validation_split,
-            "optimizer": pars[7],
+            "optimizer": pars[6],
         }
 
         try:
@@ -367,7 +348,7 @@ def main():
             processo = Process(
                 target=run_experiment,
                 args=(
-                    "cnn_fmsynth3",
+                    "cnn_fmsynth10",
                     x,
                     y,
                     x_t,
