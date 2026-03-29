@@ -1,0 +1,143 @@
+{
+  "model_name": "model_training_big4_fmsynth3_0_1",
+  "dataset": "dataset_big4",
+  "tamanho_dataset": 10000,
+  "metrics": {
+    "mse": 6118.1982421875,
+    "mae": 6.791436672210693,
+    "rmse": 78.21891021728516
+  },
+  "history_last": {
+    "loss": 0.899075448513031,
+    "val_loss": 0.9112632870674133,
+    "mse": 0.8928846716880798,
+    "val_mse": 0.9052913188934326,
+    "mae": 0.7731990814208984,
+    "val_mae": 0.7733043432235718
+  },
+  "categorical_maps": {
+    "style": [
+      "musical",
+      "random"
+    ],
+    "algorithm": [
+      "dual_chain",
+      "parallel5",
+      "series2_parallel3",
+      "series2x2_parallel1",
+      "series3",
+      "series3_parallel1_plus1",
+      "series3_parallel2",
+      "series4_parallel1",
+      "series5"
+    ],
+    "env1_curve_attack": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env1_curve_decay": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env1_curve_release": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env2_curve_attack": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env2_curve_decay": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env2_curve_release": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env3_curve_attack": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env3_curve_decay": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env3_curve_release": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env4_curve_attack": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env4_curve_decay": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env4_curve_release": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env5_curve_attack": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env5_curve_decay": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env5_curve_release": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env_carrier_curve_attack": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env_carrier_curve_decay": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env_carrier_curve_release": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ]
+  }
+}
