@@ -1,0 +1,4359 @@
+{
+  "seed": 42,
+  "grid": {
+    "activation": [
+      "relu",
+      "gelu",
+      "swish"
+    ],
+    "bias_cnn": [
+      true,
+      false
+    ],
+    "kernel_regularizer_cnn": [
+      null,
+      "l2"
+    ],
+    "bias_regressor": [
+      true,
+      false
+    ],
+    "dropout_regressor": [
+      0.0,
+      0.2,
+      0.4
+    ],
+    "kernel_regularizer_regressor": [
+      null,
+      "l2"
+    ],
+    "optimizer": [
+      "Adam",
+      "Nadam",
+      "AdamW"
+    ]
+  },
+  "total": 432,
+  "combinations": [
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 0
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 1
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 2
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 3
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 4
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 5
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 6
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 7
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 8
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 9
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 10
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 11
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 12
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 13
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 14
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 15
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 16
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 17
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 18
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 19
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 20
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 21
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 22
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 23
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 24
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 25
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 26
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 27
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 28
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 29
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 30
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 31
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 32
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 33
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 34
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 35
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 36
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 37
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 38
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 39
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 40
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 41
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 42
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 43
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 44
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 45
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 46
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 47
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 48
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 49
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 50
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 51
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 52
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 53
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 54
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 55
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 56
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 57
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 58
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 59
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 60
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 61
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 62
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 63
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 64
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 65
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 66
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 67
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 68
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 69
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 70
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 71
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 72
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 73
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 74
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 75
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 76
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 77
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 78
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 79
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 80
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 81
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 82
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 83
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 84
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 85
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 86
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 87
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 88
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 89
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 90
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 91
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 92
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 93
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 94
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 95
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 96
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 97
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 98
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 99
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 100
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 101
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 102
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 103
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 104
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 105
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 106
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 107
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 108
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 109
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 110
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 111
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 112
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 113
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 114
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 115
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 116
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 117
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 118
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 119
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 120
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 121
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 122
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 123
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 124
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 125
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 126
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 127
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 128
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 129
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 130
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 131
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 132
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 133
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 134
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 135
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 136
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 137
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 138
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 139
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 140
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 141
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 142
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 143
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 144
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 145
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 146
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 147
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 148
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 149
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 150
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 151
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 152
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 153
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 154
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 155
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 156
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 157
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 158
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 159
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 160
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 161
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 162
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 163
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 164
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 165
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 166
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 167
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 168
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 169
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 170
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 171
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 172
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 173
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 174
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 175
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 176
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 177
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 178
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 179
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 180
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 181
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 182
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 183
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 184
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 185
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 186
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 187
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 188
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 189
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 190
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 191
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 192
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 193
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 194
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 195
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 196
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 197
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 198
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 199
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 200
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 201
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 202
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 203
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 204
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 205
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 206
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 207
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 208
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 209
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 210
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 211
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 212
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 213
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 214
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 215
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 216
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 217
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 218
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 219
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 220
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 221
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 222
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 223
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 224
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 225
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 226
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 227
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 228
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 229
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 230
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 231
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 232
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 233
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 234
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 235
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 236
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 237
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 238
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 239
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 240
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 241
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 242
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 243
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 244
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 245
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 246
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 247
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 248
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 249
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 250
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 251
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 252
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 253
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 254
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 255
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 256
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 257
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 258
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 259
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 260
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 261
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 262
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 263
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 264
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 265
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 266
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 267
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 268
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 269
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 270
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 271
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 272
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 273
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 274
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 275
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 276
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 277
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 278
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 279
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 280
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 281
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 282
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 283
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 284
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 285
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 286
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 287
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 288
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 289
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 290
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 291
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 292
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 293
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 294
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 295
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 296
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 297
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 298
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 299
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 300
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 301
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 302
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 303
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 304
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 305
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 306
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 307
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 308
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 309
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 310
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 311
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 312
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 313
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 314
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 315
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 316
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 317
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 318
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 319
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 320
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 321
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 322
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 323
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 324
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 325
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 326
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 327
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 328
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 329
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 330
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 331
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 332
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 333
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 334
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 335
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 336
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 337
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 338
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 339
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 340
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 341
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 342
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 343
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 344
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 345
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 346
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 347
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 348
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 349
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 350
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 351
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 352
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 353
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 354
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 355
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 356
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 357
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 358
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 359
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 360
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 361
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 362
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 363
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 364
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 365
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 366
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 367
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 368
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 369
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 370
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 371
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 372
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 373
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 374
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 375
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 376
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 377
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 378
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 379
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 380
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 381
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 382
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 383
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 384
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 385
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 386
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 387
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 388
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 389
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 390
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 391
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 392
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 393
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 394
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 395
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 396
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 397
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 398
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 399
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 400
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 401
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 402
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 403
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 404
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 405
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 406
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 407
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 408
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 409
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 410
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 411
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 412
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 413
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 414
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 415
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 416
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 417
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 418
+    },
+    {
+      "activation": "gelu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 419
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 420
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 421
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Nadam",
+      "id": 422
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 423
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 424
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.2,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 425
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "AdamW",
+      "id": 426
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "AdamW",
+      "id": 427
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": false,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Nadam",
+      "id": 428
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": null,
+      "bias_regressor": true,
+      "dropout_regressor": 0.4,
+      "kernel_regularizer_regressor": null,
+      "optimizer": "Adam",
+      "id": 429
+    },
+    {
+      "activation": "relu",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": false,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 430
+    },
+    {
+      "activation": "swish",
+      "bias_cnn": true,
+      "kernel_regularizer_cnn": "l2",
+      "bias_regressor": true,
+      "dropout_regressor": 0.0,
+      "kernel_regularizer_regressor": "l2",
+      "optimizer": "Adam",
+      "id": 431
+    }
+  ]
+}
