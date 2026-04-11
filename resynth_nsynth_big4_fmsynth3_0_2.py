@@ -167,7 +167,7 @@ def quantize_to_ratios_with_upper(value: float, upper: float) -> float:
 
 def midi_to_hz(midi_note: int) -> float:
     # Mantém a mesma convenção usada no resynth_nsynth.py original.
-    return 440.0 * 2.0 * (2.0 ** ((int(midi_note) - 69) / 12.0))
+    return 440.0 * (2.0 ** ((int(midi_note) - 69) / 12.0))
 
 
 def load_json(path: Path):

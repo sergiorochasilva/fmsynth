@@ -1,0 +1,279 @@
+{
+  "model_name": "model_training_big4_fmsynth3_0_3",
+  "dataset": "dataset_big4",
+  "tamanho_dataset": 10000,
+  "split": {
+    "train_size": 7500,
+    "val_size": 1500,
+    "test_size": 2500,
+    "train_frac": 0.75,
+    "val_frac_of_train": 0.2
+  },
+  "target_groups": {
+    "numeric_cols": [
+      "ratio1",
+      "ratio2",
+      "ratio3",
+      "ratio4",
+      "ratio5",
+      "ratio_carrier",
+      "detune1",
+      "detune2",
+      "detune3",
+      "detune4",
+      "detune5",
+      "detune_carrier",
+      "index_12",
+      "index_23",
+      "index_3c",
+      "index_4c",
+      "index_5c",
+      "env1_attack",
+      "env1_decay",
+      "env1_sustain",
+      "env1_release",
+      "env2_attack",
+      "env2_decay",
+      "env2_sustain",
+      "env2_release",
+      "env3_attack",
+      "env3_decay",
+      "env3_sustain",
+      "env3_release",
+      "env4_attack",
+      "env4_decay",
+      "env4_sustain",
+      "env4_release",
+      "env5_attack",
+      "env5_decay",
+      "env5_sustain",
+      "env5_release",
+      "env_carrier_attack",
+      "env_carrier_decay",
+      "env_carrier_sustain",
+      "env_carrier_release",
+      "env_scale1",
+      "env_scale2",
+      "env_scale3",
+      "env_scale4",
+      "env_scale5",
+      "env_scale_carrier",
+      "carrier_level",
+      "feedback",
+      "lfo_rate",
+      "lfo_depth_cents",
+      "key_scaling",
+      "phase1",
+      "phase2",
+      "phase3",
+      "phase4",
+      "phase5",
+      "phase_carrier"
+    ],
+    "freq_col": "frequencia_base",
+    "categorical_cols": [
+      "style",
+      "algorithm",
+      "env1_curve_attack",
+      "env1_curve_decay",
+      "env1_curve_release",
+      "env2_curve_attack",
+      "env2_curve_decay",
+      "env2_curve_release",
+      "env3_curve_attack",
+      "env3_curve_decay",
+      "env3_curve_release",
+      "env4_curve_attack",
+      "env4_curve_decay",
+      "env4_curve_release",
+      "env5_curve_attack",
+      "env5_curve_decay",
+      "env5_curve_release",
+      "env_carrier_curve_attack",
+      "env_carrier_curve_decay",
+      "env_carrier_curve_release"
+    ]
+  },
+  "removed_constant_targets": {
+    "key_scaling_ref_hz": 440.0,
+    "random_phase": 0,
+    "downsample_16k": 1
+  },
+  "metrics": {
+    "mse": 7306.19677734375,
+    "mae": 6.853782653808594,
+    "rmse": 85.4762954711914
+  },
+  "metrics_extra": {
+    "freq_mae_hz": 452.6727141730591,
+    "freq_rmse_hz": 773.5299565546397,
+    "freq_mape": 1.3827164727954302,
+    "freq_mae_cents": 1212.0785826354163,
+    "categorical_accuracy_mean": 0.5685
+  },
+  "categorical_accuracy": {
+    "style": 0.8844,
+    "algorithm": 0.1664,
+    "env1_curve_attack": 0.5592,
+    "env1_curve_decay": 0.5624,
+    "env1_curve_release": 0.5576,
+    "env2_curve_attack": 0.5712,
+    "env2_curve_decay": 0.5592,
+    "env2_curve_release": 0.546,
+    "env3_curve_attack": 0.5608,
+    "env3_curve_decay": 0.5692,
+    "env3_curve_release": 0.5484,
+    "env4_curve_attack": 0.5576,
+    "env4_curve_decay": 0.5604,
+    "env4_curve_release": 0.5544,
+    "env5_curve_attack": 0.5708,
+    "env5_curve_decay": 0.5576,
+    "env5_curve_release": 0.5648,
+    "env_carrier_curve_attack": 0.786,
+    "env_carrier_curve_decay": 0.5532,
+    "env_carrier_curve_release": 0.5804
+  },
+  "history_last": {
+    "loss": 2.72725510597229,
+    "val_loss": 6.285803318023682,
+    "num_head_mse": 0.9026059508323669,
+    "val_num_head_mse": 0.9627806544303894,
+    "num_head_mae": 0.7882573008537292,
+    "val_num_head_mae": 0.8131312131881714,
+    "freq_head_mse": 0.09965654462575912,
+    "val_freq_head_mse": 0.2981579303741455,
+    "freq_head_mae": 0.2316032499074936,
+    "val_freq_head_mae": 0.4181075990200043,
+    "cat_acc_mean": 0.7875833332538604,
+    "val_cat_acc_mean": 0.4970333330333233
+  },
+  "best_val_loss": {
+    "epoch": 4,
+    "value": 4.647485733032227
+  },
+  "categorical_maps": {
+    "style": [
+      "musical",
+      "random"
+    ],
+    "algorithm": [
+      "dual_chain",
+      "parallel5",
+      "series2_parallel3",
+      "series2x2_parallel1",
+      "series3",
+      "series3_parallel1_plus1",
+      "series3_parallel2",
+      "series4_parallel1",
+      "series5"
+    ],
+    "env1_curve_attack": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env1_curve_decay": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env1_curve_release": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env2_curve_attack": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env2_curve_decay": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env2_curve_release": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env3_curve_attack": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env3_curve_decay": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env3_curve_release": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env4_curve_attack": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env4_curve_decay": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env4_curve_release": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env5_curve_attack": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env5_curve_decay": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env5_curve_release": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env_carrier_curve_attack": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env_carrier_curve_decay": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env_carrier_curve_release": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ]
+  }
+}
