@@ -1,3 +1,16 @@
+"""Train a raw-audio FM autoencoder on `dataset_big4`.
+
+Architecture:
+- 1D CNN encoder over the waveform
+- latent bottleneck
+- MLP decoder that reconstructs the waveform
+
+Data flow:
+- Input: `dataset_big4/parameters.csv` plus `sample_*.wav`
+- Output: trained autoencoder and encoder `.keras` files, latent arrays,
+  preprocessing bundle, history plots, and `results.json`
+"""
+
 import json
 import os
 

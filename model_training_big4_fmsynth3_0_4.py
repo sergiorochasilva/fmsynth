@@ -1,3 +1,15 @@
+"""Multi-head CNN regressor for `dataset_big4` (variant 0_4).
+
+Architecture:
+- Raw waveform input
+- 1D CNN stack with medium pooling
+- Shared dense trunk with output heads for parameter groups
+
+Data flow:
+- Input: `dataset_big4/parameters.csv` and `sample_*.wav`
+- Output: trained model `.keras`, target preprocessing bundle, predictions, plots, and `results.json`
+"""
+
 import json
 import os
 

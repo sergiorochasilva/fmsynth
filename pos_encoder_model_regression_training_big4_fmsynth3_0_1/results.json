@@ -1,0 +1,410 @@
+{
+  "model_name": "pos_encoder_model_regression_training_big4_fmsynth3_0_1",
+  "dataset": "dataset_big4",
+  "latent_dataset": "dataset_big4_encoded/latent_big4_fmsynth3_0_1.npy",
+  "n_samples": 10000,
+  "split": {
+    "train_size": 7500,
+    "val_size": 1500,
+    "test_size": 2500,
+    "train_frac": 0.75,
+    "val_frac_of_train": 0.2
+  },
+  "runtime_config": {
+    "batch_size": 64,
+    "epochs": 240,
+    "learning_rate": 0.001,
+    "mixed_precision": false,
+    "mixed_precision_policy": "float32",
+    "disable_xla_jit": true,
+    "condition_cols_requested": [
+      "algorithm",
+      "style"
+    ],
+    "condition_cols_used": [
+      "algorithm",
+      "style"
+    ]
+  },
+  "algorithm_label_merges": {
+    "dual_chain": "series2x2_parallel1"
+  },
+  "removed_constant_targets": {
+    "key_scaling_ref_hz": 440.0,
+    "random_phase": 0,
+    "downsample_16k": 1
+  },
+  "target_groups": {
+    "numeric_groups": {
+      "ratio": [
+        "ratio1",
+        "ratio2",
+        "ratio3",
+        "ratio4",
+        "ratio5",
+        "ratio_carrier"
+      ],
+      "index": [
+        "index_12",
+        "index_23",
+        "index_3c",
+        "index_4c",
+        "index_5c"
+      ],
+      "detune": [
+        "detune1",
+        "detune2",
+        "detune3",
+        "detune4",
+        "detune5",
+        "detune_carrier"
+      ],
+      "env": [
+        "env1_attack",
+        "env1_decay",
+        "env1_sustain",
+        "env1_release",
+        "env2_attack",
+        "env2_decay",
+        "env2_sustain",
+        "env2_release",
+        "env3_attack",
+        "env3_decay",
+        "env3_sustain",
+        "env3_release",
+        "env4_attack",
+        "env4_decay",
+        "env4_sustain",
+        "env4_release",
+        "env5_attack",
+        "env5_decay",
+        "env5_sustain",
+        "env5_release",
+        "env_carrier_attack",
+        "env_carrier_decay",
+        "env_carrier_sustain",
+        "env_carrier_release",
+        "env_scale1",
+        "env_scale2",
+        "env_scale3",
+        "env_scale4",
+        "env_scale5",
+        "env_scale_carrier"
+      ],
+      "phase": [
+        "phase1",
+        "phase2",
+        "phase3",
+        "phase4",
+        "phase5",
+        "phase_carrier"
+      ],
+      "other": [
+        "carrier_level",
+        "feedback",
+        "lfo_rate",
+        "lfo_depth_cents",
+        "key_scaling"
+      ]
+    },
+    "ratio_log2_cols": [
+      "ratio1",
+      "ratio2",
+      "ratio3",
+      "ratio4",
+      "ratio5",
+      "ratio_carrier"
+    ],
+    "freq_col": "frequencia_base"
+  },
+  "conditioning": {
+    "condition_cols": [
+      "algorithm",
+      "style"
+    ],
+    "condition_spec": {
+      "algorithm": {
+        "n_classes": 8,
+        "slice_start": 0,
+        "slice_end": 8,
+        "categories": [
+          "parallel5",
+          "series2_parallel3",
+          "series2x2_parallel1",
+          "series3",
+          "series3_parallel1_plus1",
+          "series3_parallel2",
+          "series4_parallel1",
+          "series5"
+        ]
+      },
+      "style": {
+        "n_classes": 2,
+        "slice_start": 8,
+        "slice_end": 10,
+        "categories": [
+          "musical",
+          "random"
+        ]
+      }
+    }
+  },
+  "loss_weights": {
+    "numeric": {
+      "ratio_head": 2.4,
+      "index_head": 2.0,
+      "detune_head": 1.5,
+      "env_head": 0.9,
+      "phase_head": 0.2,
+      "other_head": 0.8
+    },
+    "freq_head": 2.0
+  },
+  "metrics": {
+    "mse": 10334.6689453125,
+    "mae": 7.877790451049805,
+    "rmse": 101.6595738005649
+  },
+  "metrics_extra": {
+    "freq_mae_hz": 377.4821790627258,
+    "freq_rmse_hz": 780.4136290114743,
+    "freq_mape": 0.6761895719772307,
+    "freq_mae_cents": 1001.1927568518322
+  },
+  "test_metrics_by_head": {
+    "freq_head": {
+      "mae_hz": 377.4821790627258,
+      "rmse_hz": 780.4136290114743,
+      "mse_hz": 609045.4323468591,
+      "mape": 0.6761895719772307,
+      "mae_cents": 1001.1927568518322
+    },
+    "ratio_head": {
+      "group_name": "ratio",
+      "mse_mean": 5.654038108024757,
+      "mae_mean": 1.5511381029094442,
+      "mse_by_col": {
+        "ratio1": 6.526756125665842,
+        "ratio2": 6.492196726027964,
+        "ratio3": 6.222525884912961,
+        "ratio4": 6.073346861908085,
+        "ratio5": 6.40061181158091,
+        "ratio_carrier": 2.208791238052786
+      },
+      "mae_by_col": {
+        "ratio1": 1.7144823081454277,
+        "ratio2": 1.7312576247097207,
+        "ratio3": 1.710119401376352,
+        "ratio4": 1.7072185626888008,
+        "ratio5": 1.7329175319829533,
+        "ratio_carrier": 0.7108331885534095
+      }
+    },
+    "index_head": {
+      "group_name": "index",
+      "mse_mean": 3.9799118458136578,
+      "mae_mean": 1.4541683367083968,
+      "mse_by_col": {
+        "index_12": 3.936600829027233,
+        "index_23": 4.038194519294848,
+        "index_3c": 4.158318036884341,
+        "index_4c": 3.8550858311398746,
+        "index_5c": 3.911360012721993
+      },
+      "mae_by_col": {
+        "index_12": 1.44416288371521,
+        "index_23": 1.4505339615420534,
+        "index_3c": 1.4973093102046966,
+        "index_4c": 1.4365065230360794,
+        "index_5c": 1.4423290050439452
+      }
+    },
+    "detune_head": {
+      "group_name": "detune",
+      "mse_mean": 96.95577009017926,
+      "mae_mean": 8.247947542191909,
+      "mse_by_col": {
+        "detune1": 97.36390408883665,
+        "detune2": 97.15641301113445,
+        "detune3": 96.04011695374176,
+        "detune4": 96.49457724833408,
+        "detune5": 96.53805131321465,
+        "detune_carrier": 98.14155792581394
+      },
+      "mae_by_col": {
+        "detune1": 8.320469372022242,
+        "detune2": 8.26712007009475,
+        "detune3": 8.19446489374139,
+        "detune4": 8.2334968029671,
+        "detune5": 8.14123019869076,
+        "detune_carrier": 8.330903915635206
+      }
+    },
+    "env_head": {
+      "group_name": "env",
+      "mse_mean": 0.05221700538122418,
+      "mae_mean": 0.1920624682694698,
+      "mse_by_col": {
+        "env1_attack": 0.02097385022472772,
+        "env1_decay": 0.05175706715516969,
+        "env1_sustain": 0.06803717553354838,
+        "env1_release": 0.08122914158860495,
+        "env2_attack": 0.020433368349520722,
+        "env2_decay": 0.05385329843582965,
+        "env2_sustain": 0.06732717915142857,
+        "env2_release": 0.081995887387908,
+        "env3_attack": 0.02134612719497859,
+        "env3_decay": 0.0552686494437379,
+        "env3_sustain": 0.06887276184715366,
+        "env3_release": 0.07977098296618315,
+        "env4_attack": 0.02080468382338959,
+        "env4_decay": 0.05302721713239145,
+        "env4_sustain": 0.06642529373474655,
+        "env4_release": 0.08093126335803948,
+        "env5_attack": 0.02059757726862675,
+        "env5_decay": 0.052100784061669694,
+        "env5_sustain": 0.0661322952124631,
+        "env5_release": 0.08274191003073565,
+        "env_carrier_attack": 0.021186428149581545,
+        "env_carrier_decay": 0.053227354158571494,
+        "env_carrier_sustain": 0.025390952111293073,
+        "env_carrier_release": 0.08311990945129487,
+        "env_scale1": 0.044828701898378724,
+        "env_scale2": 0.04529225379390607,
+        "env_scale3": 0.04472821809296105,
+        "env_scale4": 0.04536133443519899,
+        "env_scale5": 0.04472337177476264,
+        "env_scale_carrier": 0.04502512366992396
+      },
+      "mae_by_col": {
+        "env1_attack": 0.1254385721220112,
+        "env1_decay": 0.19625548918300392,
+        "env1_sustain": 0.2263133983053398,
+        "env1_release": 0.2474576451564789,
+        "env2_attack": 0.12274038102367761,
+        "env2_decay": 0.20121159500564573,
+        "env2_sustain": 0.2239219015970802,
+        "env2_release": 0.2476384885958958,
+        "env3_attack": 0.12661612182927132,
+        "env3_decay": 0.20512871564181323,
+        "env3_sustain": 0.22631076679246903,
+        "env3_release": 0.24367918530246735,
+        "env4_attack": 0.12476030320564269,
+        "env4_decay": 0.19999105774549483,
+        "env4_sustain": 0.222032821146307,
+        "env4_release": 0.24503561513742447,
+        "env5_attack": 0.12402469882732389,
+        "env5_decay": 0.1965877751814842,
+        "env5_sustain": 0.22112024968716623,
+        "env5_release": 0.24858704743063453,
+        "env_carrier_attack": 0.12588476594481468,
+        "env_carrier_decay": 0.2003284140273285,
+        "env_carrier_sustain": 0.11836447583043933,
+        "env_carrier_release": 0.24983428612561223,
+        "env_scale1": 0.18210259160369874,
+        "env_scale2": 0.18292352504997256,
+        "env_scale3": 0.18062476949272155,
+        "env_scale4": 0.1831340437880707,
+        "env_scale5": 0.18153873795963285,
+        "env_scale_carrier": 0.18228660934516908
+      }
+    },
+    "phase_head": {
+      "group_name": "phase",
+      "mse_mean": 3.3747860752731937,
+      "mae_mean": 1.5924453226431277,
+      "mse_by_col": {
+        "phase1": 3.262721817983702,
+        "phase2": 3.2508993486914357,
+        "phase3": 3.4334961490141387,
+        "phase4": 3.4772031697624612,
+        "phase5": 3.378776658306096,
+        "phase_carrier": 3.4456193078813304
+      },
+      "mae_by_col": {
+        "phase1": 1.5613082443988038,
+        "phase2": 1.5588059123101807,
+        "phase3": 1.6116568611888884,
+        "phase4": 1.6144819019983674,
+        "phase5": 1.5928184183711245,
+        "phase_carrier": 1.6156005975914003
+      }
+    },
+    "other_head": {
+      "group_name": "other",
+      "mse_mean": 8.532431879319907,
+      "mae_mean": 1.185115838949071,
+      "mse_by_col": {
+        "carrier_level": 0.016149122850725842,
+        "feedback": 0.05439441562605785,
+        "lfo_rate": 5.945463215094439,
+        "lfo_depth_cents": 36.5892530710289,
+        "key_scaling": 0.056899571999411105
+      },
+      "mae_by_col": {
+        "carrier_level": 0.10786252272299766,
+        "feedback": 0.1497621798189629,
+        "lfo_rate": 1.5941858765176153,
+        "lfo_depth_cents": 3.8723129507195946,
+        "key_scaling": 0.2014556649661848
+      }
+    },
+    "numeric_heads_aggregate": {
+      "mse_mean": 12.06958266255117,
+      "mae_mean": 1.5053013919454883
+    }
+  },
+  "history_last": {
+    "detune_head_loss": 0.3401924967765808,
+    "detune_head_mae": 0.7584195733070374,
+    "detune_head_mse": 0.8716568946838379,
+    "env_head_loss": 0.3883249759674072,
+    "env_head_mae": 0.8335890173912048,
+    "env_head_mse": 0.9568483233451843,
+    "freq_head_loss": 0.0559297539293766,
+    "freq_head_mae": 0.2628583610057831,
+    "freq_head_mse": 0.12635323405265808,
+    "index_head_loss": 0.27619925141334534,
+    "index_head_mae": 0.6405017375946045,
+    "index_head_mse": 0.7872666120529175,
+    "loss": 2.550051689147949,
+    "other_head_loss": 0.2992840111255646,
+    "other_head_mae": 0.6704126596450806,
+    "other_head_mse": 0.8556643128395081,
+    "phase_head_loss": 0.3927248418331146,
+    "phase_head_mae": 0.8404962420463562,
+    "phase_head_mse": 0.9671421647071838,
+    "ratio_head_loss": 0.29509127140045166,
+    "ratio_head_mae": 0.6814250349998474,
+    "ratio_head_mse": 0.7277925610542297,
+    "val_detune_head_loss": 0.42017844319343567,
+    "val_detune_head_mae": 0.875855565071106,
+    "val_detune_head_mse": 1.14363694190979,
+    "val_env_head_loss": 0.40145382285118103,
+    "val_env_head_mae": 0.8523324131965637,
+    "val_env_head_mse": 0.9948050379753113,
+    "val_freq_head_loss": 0.10102274268865585,
+    "val_freq_head_mae": 0.3742934465408325,
+    "val_freq_head_mse": 0.2509145140647888,
+    "val_index_head_loss": 0.32644006609916687,
+    "val_index_head_mae": 0.7171885371208191,
+    "val_index_head_mse": 0.956381618976593,
+    "val_loss": 3.1972930431365967,
+    "val_other_head_loss": 0.33411654829978943,
+    "val_other_head_mae": 0.729080080986023,
+    "val_other_head_mse": 0.9747825264930725,
+    "val_phase_head_loss": 0.41448327898979187,
+    "val_phase_head_mae": 0.873805820941925,
+    "val_phase_head_mse": 1.032819151878357,
+    "val_ratio_head_loss": 0.42050039768218994,
+    "val_ratio_head_mae": 0.8680458068847656,
+    "val_ratio_head_mse": 1.1107430458068848,
+    "learning_rate": 0.0002500000118743628,
+    "num_group_mse_mean": 0.8610618114471436,
+    "val_num_group_mse_mean": 1.0355280538400014
+  },
+  "best_val_loss": {
+    "epoch": 7,
+    "value": 3.0802297592163086
+  }
+}

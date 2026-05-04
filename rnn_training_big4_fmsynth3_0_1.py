@@ -1,3 +1,15 @@
+"""BiGRU sequence regressor for `dataset_big4`.
+
+Architecture:
+- Raw waveform framed into sequences
+- Bidirectional GRU stack over frames
+- Shared dense trunk with numeric and frequency heads
+
+Data flow:
+- Input: `dataset_big4/parameters.csv` and `sample_*.wav`
+- Output: trained RNN model `.keras`, preprocessing bundle, predictions, plots, and `results.json`
+"""
+
 import json
 import os
 

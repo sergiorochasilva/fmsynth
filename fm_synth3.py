@@ -1,3 +1,14 @@
+"""Third-generation FM synth engine used for `dataset_big3`, `big4`, and `big5`.
+
+Architecture:
+- Six-operator FM/PM-style synth with per-operator envelopes, detune, feedback, and LFO
+- Renders at a high internal rate and optionally decimates to 16 kHz
+
+Data flow:
+- Input: structured synthesis parameters from dataset generation or prediction scripts
+- Output: waveform arrays and `.wav` files compatible with the training datasets
+"""
+
 import math
 from dataclasses import dataclass
 from typing import Tuple

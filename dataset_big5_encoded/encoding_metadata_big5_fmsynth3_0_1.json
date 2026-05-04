@@ -1,0 +1,17 @@
+{
+  "base_path": "dataset_big5",
+  "model_dir": "autoencoder_training_big5_fmsynth3_0_1",
+  "encoder_path": "autoencoder_training_big5_fmsynth3_0_1/encoder_autoencoder_training_big5_fmsynth3_0_1.keras",
+  "preprocess_path": "autoencoder_training_big5_fmsynth3_0_1/preprocess_autoencoder_training_big5_fmsynth3_0_1.save",
+  "output_dir": "dataset_big5_encoded",
+  "n_samples": 10000,
+  "audio_len": 64000,
+  "latent_dim": 256,
+  "batch_size": 8,
+  "max_samples": 0,
+  "audio_dtype": "float32",
+  "peak_norm": 0.891,
+  "files": {
+    "latent_npy": "dataset_big5_encoded/latent_big5_fmsynth3_0_1.npy"
+  }
+}

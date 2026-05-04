@@ -1,3 +1,14 @@
+"""Compute audio-distance metrics between synthesized and reference files.
+
+Architecture:
+- Loads paired waveforms
+- Computes FFT, STFT, and log-mel spectrogram distances
+
+Data flow:
+- Input: two folders of `.wav` files, usually original vs resynthesized
+- Output: per-file and aggregate distance tables for experiment evaluation
+"""
+
 import os
 import numpy as np
 import soundfile as sf

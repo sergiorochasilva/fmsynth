@@ -1,3 +1,14 @@
+"""First-generation FM synth engine used in the early experiments.
+
+Architecture:
+- Single-synth rendering engine with explicit envelopes and FM operators
+- Produces raw waveform samples for the requested note duration
+
+Data flow:
+- Input: synthesis parameters provided in Python code
+- Output: rendered waveform arrays or `.wav` files
+"""
+
 import math
 import soundfile as sf
 import numpy as np

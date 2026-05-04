@@ -1,0 +1,446 @@
+{
+  "model_name": "pos_encoder_model_classification_training_big5_fmsynth3_0_1",
+  "dataset": "dataset_big5",
+  "latent_dataset": "dataset_big5_encoded/latent_big5_fmsynth3_0_1.npy",
+  "n_samples": 10000,
+  "split": {
+    "train_size": 7500,
+    "val_size": 1500,
+    "test_size": 2500,
+    "train_frac": 0.75,
+    "val_frac_of_train": 0.2
+  },
+  "runtime_config": {
+    "batch_size": 64,
+    "epochs": 220,
+    "learning_rate": 0.001,
+    "mixed_precision": false,
+    "mixed_precision_policy": "float32",
+    "disable_xla_jit": true
+  },
+  "algorithm_label_merges": {
+    "dual_chain": "series2x2_parallel1"
+  },
+  "removed_constant_targets": {
+    "key_scaling_ref_hz": 440.0,
+    "random_phase": 0,
+    "downsample_16k": 1
+  },
+  "categorical_cols": [
+    "style",
+    "algorithm",
+    "env1_curve_attack",
+    "env1_curve_decay",
+    "env1_curve_release",
+    "env2_curve_attack",
+    "env2_curve_decay",
+    "env2_curve_release",
+    "env3_curve_attack",
+    "env3_curve_decay",
+    "env3_curve_release",
+    "env4_curve_attack",
+    "env4_curve_decay",
+    "env4_curve_release",
+    "env5_curve_attack",
+    "env5_curve_decay",
+    "env5_curve_release",
+    "env_carrier_curve_attack",
+    "env_carrier_curve_decay",
+    "env_carrier_curve_release"
+  ],
+  "loss_weights": {
+    "default": 0.05,
+    "algorithm": 1.0,
+    "style": 0.2,
+    "env_curve": 0.06,
+    "by_col": {
+      "style": 0.2,
+      "algorithm": 1.0,
+      "env1_curve_attack": 0.06,
+      "env1_curve_decay": 0.06,
+      "env1_curve_release": 0.06,
+      "env2_curve_attack": 0.06,
+      "env2_curve_decay": 0.06,
+      "env2_curve_release": 0.06,
+      "env3_curve_attack": 0.06,
+      "env3_curve_decay": 0.06,
+      "env3_curve_release": 0.06,
+      "env4_curve_attack": 0.06,
+      "env4_curve_decay": 0.06,
+      "env4_curve_release": 0.06,
+      "env5_curve_attack": 0.06,
+      "env5_curve_decay": 0.06,
+      "env5_curve_release": 0.06,
+      "env_carrier_curve_attack": 0.06,
+      "env_carrier_curve_decay": 0.06,
+      "env_carrier_curve_release": 0.06
+    }
+  },
+  "metrics": {
+    "categorical_accuracy_mean": 0.27984,
+    "categorical_crossentropy_mean": 1.3675314055177066
+  },
+  "categorical_accuracy": {
+    "style": 0.9012,
+    "algorithm": 0.1688,
+    "env1_curve_attack": 0.24,
+    "env1_curve_decay": 0.2532,
+    "env1_curve_release": 0.2524,
+    "env2_curve_attack": 0.2604,
+    "env2_curve_decay": 0.26,
+    "env2_curve_release": 0.2536,
+    "env3_curve_attack": 0.2668,
+    "env3_curve_decay": 0.2544,
+    "env3_curve_release": 0.2516,
+    "env4_curve_attack": 0.254,
+    "env4_curve_decay": 0.2476,
+    "env4_curve_release": 0.2376,
+    "env5_curve_attack": 0.2492,
+    "env5_curve_decay": 0.2436,
+    "env5_curve_release": 0.2536,
+    "env_carrier_curve_attack": 0.2492,
+    "env_carrier_curve_decay": 0.246,
+    "env_carrier_curve_release": 0.2536
+  },
+  "categorical_crossentropy": {
+    "style": 0.29683957914530584,
+    "algorithm": 2.015655455117999,
+    "env1_curve_attack": 1.3890340087126494,
+    "env1_curve_decay": 1.3938982218661098,
+    "env1_curve_release": 1.3917453238297406,
+    "env2_curve_attack": 1.3944942578685076,
+    "env2_curve_decay": 1.3887592802306516,
+    "env2_curve_release": 1.390565963342326,
+    "env3_curve_attack": 1.3886888274024742,
+    "env3_curve_decay": 1.3919981797127905,
+    "env3_curve_release": 1.389993947313861,
+    "env4_curve_attack": 1.3885155878266235,
+    "env4_curve_decay": 1.3926614551193555,
+    "env4_curve_release": 1.392281287184758,
+    "env5_curve_attack": 1.3927808384855132,
+    "env5_curve_decay": 1.3924470319066664,
+    "env5_curve_release": 1.3869583375588699,
+    "env_carrier_curve_attack": 1.3889276870619827,
+    "env_carrier_curve_decay": 1.3901139250046837,
+    "env_carrier_curve_release": 1.394268915663266
+  },
+  "test_metrics_by_head": {
+    "style": {
+      "accuracy": 0.9012,
+      "crossentropy": 0.29683957914530584,
+      "n_classes": 2
+    },
+    "algorithm": {
+      "accuracy": 0.1688,
+      "crossentropy": 2.015655455117999,
+      "n_classes": 8
+    },
+    "env1_curve_attack": {
+      "accuracy": 0.24,
+      "crossentropy": 1.3890340087126494,
+      "n_classes": 4
+    },
+    "env1_curve_decay": {
+      "accuracy": 0.2532,
+      "crossentropy": 1.3938982218661098,
+      "n_classes": 4
+    },
+    "env1_curve_release": {
+      "accuracy": 0.2524,
+      "crossentropy": 1.3917453238297406,
+      "n_classes": 4
+    },
+    "env2_curve_attack": {
+      "accuracy": 0.2604,
+      "crossentropy": 1.3944942578685076,
+      "n_classes": 4
+    },
+    "env2_curve_decay": {
+      "accuracy": 0.26,
+      "crossentropy": 1.3887592802306516,
+      "n_classes": 4
+    },
+    "env2_curve_release": {
+      "accuracy": 0.2536,
+      "crossentropy": 1.390565963342326,
+      "n_classes": 4
+    },
+    "env3_curve_attack": {
+      "accuracy": 0.2668,
+      "crossentropy": 1.3886888274024742,
+      "n_classes": 4
+    },
+    "env3_curve_decay": {
+      "accuracy": 0.2544,
+      "crossentropy": 1.3919981797127905,
+      "n_classes": 4
+    },
+    "env3_curve_release": {
+      "accuracy": 0.2516,
+      "crossentropy": 1.389993947313861,
+      "n_classes": 4
+    },
+    "env4_curve_attack": {
+      "accuracy": 0.254,
+      "crossentropy": 1.3885155878266235,
+      "n_classes": 4
+    },
+    "env4_curve_decay": {
+      "accuracy": 0.2476,
+      "crossentropy": 1.3926614551193555,
+      "n_classes": 4
+    },
+    "env4_curve_release": {
+      "accuracy": 0.2376,
+      "crossentropy": 1.392281287184758,
+      "n_classes": 4
+    },
+    "env5_curve_attack": {
+      "accuracy": 0.2492,
+      "crossentropy": 1.3927808384855132,
+      "n_classes": 4
+    },
+    "env5_curve_decay": {
+      "accuracy": 0.2436,
+      "crossentropy": 1.3924470319066664,
+      "n_classes": 4
+    },
+    "env5_curve_release": {
+      "accuracy": 0.2536,
+      "crossentropy": 1.3869583375588699,
+      "n_classes": 4
+    },
+    "env_carrier_curve_attack": {
+      "accuracy": 0.2492,
+      "crossentropy": 1.3889276870619827,
+      "n_classes": 4
+    },
+    "env_carrier_curve_decay": {
+      "accuracy": 0.246,
+      "crossentropy": 1.3901139250046837,
+      "n_classes": 4
+    },
+    "env_carrier_curve_release": {
+      "accuracy": 0.2536,
+      "crossentropy": 1.394268915663266,
+      "n_classes": 4
+    }
+  },
+  "history_last": {
+    "cat__algorithm_loss": 1.2986950874328613,
+    "cat__algorithm_sparse_categorical_accuracy": 0.51583331823349,
+    "cat__env1_curve_attack_loss": 1.3379428386688232,
+    "cat__env1_curve_attack_sparse_categorical_accuracy": 0.3401666581630707,
+    "cat__env1_curve_decay_loss": 1.3429938554763794,
+    "cat__env1_curve_decay_sparse_categorical_accuracy": 0.335833340883255,
+    "cat__env1_curve_release_loss": 1.3377397060394287,
+    "cat__env1_curve_release_sparse_categorical_accuracy": 0.3421666622161865,
+    "cat__env2_curve_attack_loss": 1.3391356468200684,
+    "cat__env2_curve_attack_sparse_categorical_accuracy": 0.3323333263397217,
+    "cat__env2_curve_decay_loss": 1.3380448818206787,
+    "cat__env2_curve_decay_sparse_categorical_accuracy": 0.3356666564941406,
+    "cat__env2_curve_release_loss": 1.3391621112823486,
+    "cat__env2_curve_release_sparse_categorical_accuracy": 0.34299999475479126,
+    "cat__env3_curve_attack_loss": 1.341499924659729,
+    "cat__env3_curve_attack_sparse_categorical_accuracy": 0.34033334255218506,
+    "cat__env3_curve_decay_loss": 1.336530327796936,
+    "cat__env3_curve_decay_sparse_categorical_accuracy": 0.3400000035762787,
+    "cat__env3_curve_release_loss": 1.3424493074417114,
+    "cat__env3_curve_release_sparse_categorical_accuracy": 0.3370000123977661,
+    "cat__env4_curve_attack_loss": 1.3386967182159424,
+    "cat__env4_curve_attack_sparse_categorical_accuracy": 0.3425000011920929,
+    "cat__env4_curve_decay_loss": 1.3371636867523193,
+    "cat__env4_curve_decay_sparse_categorical_accuracy": 0.3361666798591614,
+    "cat__env4_curve_release_loss": 1.335056185722351,
+    "cat__env4_curve_release_sparse_categorical_accuracy": 0.3486666679382324,
+    "cat__env5_curve_attack_loss": 1.3420119285583496,
+    "cat__env5_curve_attack_sparse_categorical_accuracy": 0.33283331990242004,
+    "cat__env5_curve_decay_loss": 1.3409351110458374,
+    "cat__env5_curve_decay_sparse_categorical_accuracy": 0.3323333263397217,
+    "cat__env5_curve_release_loss": 1.3376474380493164,
+    "cat__env5_curve_release_sparse_categorical_accuracy": 0.3423333466053009,
+    "cat__env_carrier_curve_attack_loss": 1.3341361284255981,
+    "cat__env_carrier_curve_attack_sparse_categorical_accuracy": 0.34950000047683716,
+    "cat__env_carrier_curve_decay_loss": 1.3366972208023071,
+    "cat__env_carrier_curve_decay_sparse_categorical_accuracy": 0.3348333239555359,
+    "cat__env_carrier_curve_release_loss": 1.3356701135635376,
+    "cat__env_carrier_curve_release_sparse_categorical_accuracy": 0.3373333215713501,
+    "cat__style_loss": 0.2658516764640808,
+    "cat__style_sparse_categorical_accuracy": 0.9041666388511658,
+    "loss": 2.797024965286255,
+    "val_cat__algorithm_loss": 2.559039354324341,
+    "val_cat__algorithm_sparse_categorical_accuracy": 0.19333332777023315,
+    "val_cat__env1_curve_attack_loss": 1.4291505813598633,
+    "val_cat__env1_curve_attack_sparse_categorical_accuracy": 0.23999999463558197,
+    "val_cat__env1_curve_decay_loss": 1.4120640754699707,
+    "val_cat__env1_curve_decay_sparse_categorical_accuracy": 0.23333333432674408,
+    "val_cat__env1_curve_release_loss": 1.4124711751937866,
+    "val_cat__env1_curve_release_sparse_categorical_accuracy": 0.23999999463558197,
+    "val_cat__env2_curve_attack_loss": 1.414284348487854,
+    "val_cat__env2_curve_attack_sparse_categorical_accuracy": 0.25333333015441895,
+    "val_cat__env2_curve_decay_loss": 1.4116204977035522,
+    "val_cat__env2_curve_decay_sparse_categorical_accuracy": 0.25066667795181274,
+    "val_cat__env2_curve_release_loss": 1.4195133447647095,
+    "val_cat__env2_curve_release_sparse_categorical_accuracy": 0.24799999594688416,
+    "val_cat__env3_curve_attack_loss": 1.4220452308654785,
+    "val_cat__env3_curve_attack_sparse_categorical_accuracy": 0.25999999046325684,
+    "val_cat__env3_curve_decay_loss": 1.420568823814392,
+    "val_cat__env3_curve_decay_sparse_categorical_accuracy": 0.23999999463558197,
+    "val_cat__env3_curve_release_loss": 1.421928882598877,
+    "val_cat__env3_curve_release_sparse_categorical_accuracy": 0.23399999737739563,
+    "val_cat__env4_curve_attack_loss": 1.4115232229232788,
+    "val_cat__env4_curve_attack_sparse_categorical_accuracy": 0.257999986410141,
+    "val_cat__env4_curve_decay_loss": 1.4167604446411133,
+    "val_cat__env4_curve_decay_sparse_categorical_accuracy": 0.2626666724681854,
+    "val_cat__env4_curve_release_loss": 1.4259222745895386,
+    "val_cat__env4_curve_release_sparse_categorical_accuracy": 0.2513333261013031,
+    "val_cat__env5_curve_attack_loss": 1.4217267036437988,
+    "val_cat__env5_curve_attack_sparse_categorical_accuracy": 0.24799999594688416,
+    "val_cat__env5_curve_decay_loss": 1.4174035787582397,
+    "val_cat__env5_curve_decay_sparse_categorical_accuracy": 0.23199999332427979,
+    "val_cat__env5_curve_release_loss": 1.4160056114196777,
+    "val_cat__env5_curve_release_sparse_categorical_accuracy": 0.2473333328962326,
+    "val_cat__env_carrier_curve_attack_loss": 1.404784083366394,
+    "val_cat__env_carrier_curve_attack_sparse_categorical_accuracy": 0.2553333342075348,
+    "val_cat__env_carrier_curve_decay_loss": 1.4112563133239746,
+    "val_cat__env_carrier_curve_decay_sparse_categorical_accuracy": 0.25200000405311584,
+    "val_cat__env_carrier_curve_release_loss": 1.4272379875183105,
+    "val_cat__env_carrier_curve_release_sparse_categorical_accuracy": 0.25733333826065063,
+    "val_cat__style_loss": 0.3097556233406067,
+    "val_cat__style_sparse_categorical_accuracy": 0.8986666798591614,
+    "val_loss": 4.156744956970215,
+    "learning_rate": 0.0002500000118743628,
+    "cat_acc_mean": 0.3761499971151352,
+    "val_cat_acc_mean": 0.27776666507124903,
+    "cat_loss_mean": 1.2829029947519301,
+    "val_cat_loss_mean": 1.4192531079053878
+  },
+  "best_val_loss": {
+    "epoch": 3,
+    "value": 3.5573365688323975
+  },
+  "categorical_maps": {
+    "style": [
+      "musical",
+      "random"
+    ],
+    "algorithm": [
+      "parallel5",
+      "series2_parallel3",
+      "series2x2_parallel1",
+      "series3",
+      "series3_parallel1_plus1",
+      "series3_parallel2",
+      "series4_parallel1",
+      "series5"
+    ],
+    "env1_curve_attack": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env1_curve_decay": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env1_curve_release": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env2_curve_attack": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env2_curve_decay": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env2_curve_release": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env3_curve_attack": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env3_curve_decay": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env3_curve_release": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env4_curve_attack": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env4_curve_decay": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env4_curve_release": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env5_curve_attack": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env5_curve_decay": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env5_curve_release": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env_carrier_curve_attack": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env_carrier_curve_decay": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ],
+    "env_carrier_curve_release": [
+      "exp",
+      "linear",
+      "log",
+      "s_curve"
+    ]
+  }
+}

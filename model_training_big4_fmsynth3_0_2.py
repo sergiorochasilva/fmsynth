@@ -1,3 +1,15 @@
+"""Audio-to-parameter regression experiment for `dataset_big4` (variant 0_2).
+
+Architecture:
+- Raw waveform input
+- CNN projection block
+- Separate projection/regression submodels used for analysis and training
+
+Data flow:
+- Input: `dataset_big4/parameters.csv` and `sample_*.wav`
+- Output: trained model(s), target scaler, train/test arrays, plots, and `results.json`
+"""
+
 import json
 import os
 

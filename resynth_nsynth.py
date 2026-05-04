@@ -1,3 +1,15 @@
+"""Resynthesize NSynth test audio from predicted FM parameters.
+
+Architecture:
+- Loads predicted parameter JSON
+- Projects parameters into a feasible FM range
+- Uses the FM synth engine to render audio back to waveform form
+
+Data flow:
+- Input: NSynth predictions plus `nsynth-test/examples.json`
+- Output: synthesized `.wav` files in `nsynth-pred/`
+"""
+
 import json
 import numpy as np
 import os

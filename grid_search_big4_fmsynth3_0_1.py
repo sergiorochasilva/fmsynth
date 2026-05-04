@@ -1,3 +1,13 @@
+"""Grid-search runner for `dataset_big4` regression architectures.
+
+Architecture:
+- Builds candidate dense/conv model families and evaluates them under different hyperparameters
+
+Data flow:
+- Input: `dataset_big4`-derived training arrays and experiment configuration
+- Output: combination list, progress file, search logs, and model selection artifacts
+"""
+
 import json
 import math
 import os

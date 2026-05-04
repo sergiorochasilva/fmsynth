@@ -1,3 +1,13 @@
+"""Grid-search runner for regression architectures used in the FM synth experiments.
+
+Architecture:
+- Builds candidate dense/conv model families and evaluates them under different hyperparameters
+
+Data flow:
+- Input: prepared training arrays and experiment configuration
+- Output: search logs, candidate metrics, and model selection artifacts
+"""
+
 import joblib
 import math
 import mlflow

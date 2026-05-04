@@ -1,3 +1,15 @@
+"""CNN regressor for `dataset_big3` synthesis parameters.
+
+Architecture:
+- Raw waveform input
+- 1D CNN feature extractor with pooling
+- Flatten + dense regression head
+
+Data flow:
+- Input: `dataset_big3/parameters.csv` and `sample_*.wav`
+- Output: regression model `.keras`, target scaler, train/test arrays, plots, and `results.json`
+"""
+
 import json
 import os
 

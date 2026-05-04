@@ -1,3 +1,14 @@
+"""Predict synthesis parameters for `dataset_big4` audio using a saved model.
+
+Architecture:
+- Loads a trained regression model and target preprocessing bundle
+- Converts raw waveforms into the model input format
+
+Data flow:
+- Input: `dataset_big4/sample_*.wav` plus saved model/scaler artifacts
+- Output: predicted parameter tables and JSON/CSV exports
+"""
+
 import argparse
 import json
 from pathlib import Path

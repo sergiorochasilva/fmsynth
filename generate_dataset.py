@@ -1,3 +1,14 @@
+"""Generate the first FM-synthesis dataset used in the experiments.
+
+Architecture:
+- Randomly samples synthesis parameters
+- Renders audio with the first FM synth engine
+
+Data flow:
+- Input: configuration constants in the script
+- Output: a dataset folder with WAV files, parameter metadata, and summary JSON
+"""
+
 import IPython.display as ipd
 import json
 import numpy as np

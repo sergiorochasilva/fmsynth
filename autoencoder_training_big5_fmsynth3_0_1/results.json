@@ -1,0 +1,66 @@
+{
+  "model_name": "autoencoder_training_big5_fmsynth3_0_1",
+  "encoder_name": "encoder_autoencoder_training_big5_fmsynth3_0_1",
+  "dataset": "dataset_big5",
+  "tamanho_dataset": 10000,
+  "split": {
+    "fit_size": 6000,
+    "val_size": 1500,
+    "test_size": 2500,
+    "train_frac": 0.75,
+    "val_frac_of_train": 0.2
+  },
+  "runtime_config": {
+    "batch_size": 2,
+    "pred_batch_size": 4,
+    "epochs": 180,
+    "learning_rate": 0.001,
+    "mixed_precision": true,
+    "mixed_precision_policy": "mixed_float16",
+    "disable_xla_jit": true,
+    "audio_dtype": "float16",
+    "sequence_training": true,
+    "save_split_arrays": false
+  },
+  "model_config": {
+    "latent_dim": 256,
+    "decoder_hidden_dim": 384,
+    "decoder_dropout": 0.1
+  },
+  "loss_config": {
+    "log_mel_weight": 0.7,
+    "stft_weight": 0.3,
+    "n_fft": 1024,
+    "hop_length": 256,
+    "win_length": 1024,
+    "n_mels": 96,
+    "mel_fmin": 20.0,
+    "mel_fmax": 8000.0
+  },
+  "audio_config": {
+    "audio_len": 64000,
+    "sample_rate": 16000
+  },
+  "metrics": {
+    "test_loss_keras": 2.298488140106201,
+    "test_waveform_mae": 0.26059508323669434,
+    "test_log_mel_mae": 2.7869204431533814,
+    "test_stft_mae": 1.1588148723125458,
+    "test_hybrid_recomputed": 2.2984887719011304
+  },
+  "history_last": {
+    "log_mel_mae": 2.4047019481658936,
+    "loss": 2.0362014770507812,
+    "mae": 0.2646902799606323,
+    "stft_mae": 1.1763646602630615,
+    "val_log_mel_mae": 2.694777727127075,
+    "val_loss": 2.232806444168091,
+    "val_mae": 0.2546597719192505,
+    "val_stft_mae": 1.1548720598220825,
+    "learning_rate": 3.906250185536919e-06
+  },
+  "best_val_loss": {
+    "epoch": 179,
+    "value": 2.232806444168091
+  }
+}

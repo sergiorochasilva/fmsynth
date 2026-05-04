@@ -1,3 +1,14 @@
+"""Baseline NSynth prediction script.
+
+Architecture:
+- Loads a trained regression model and its target scaler
+- Processes raw NSynth waveforms into the input format expected by the model
+
+Data flow:
+- Input: NSynth test audio files plus a saved `.keras` model and `scaler_y_*.save`
+- Output: predicted synthesis parameters written to JSON
+"""
+
 import IPython.display as ipd
 import json
 import numpy as np

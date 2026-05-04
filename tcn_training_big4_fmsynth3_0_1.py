@@ -1,3 +1,15 @@
+"""Temporal Convolutional Network regressor for `dataset_big4`.
+
+Architecture:
+- Raw waveform input
+- TCN-style convolutional stem with dilated temporal blocks
+- Shared dense trunk with numeric and frequency heads
+
+Data flow:
+- Input: `dataset_big4/parameters.csv` and `sample_*.wav`
+- Output: trained TCN model `.keras`, preprocessing bundle, predictions, plots, and `results.json`
+"""
+
 import json
 import os
 

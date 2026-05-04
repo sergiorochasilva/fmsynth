@@ -1,3 +1,14 @@
+"""Second-generation FM synth engine with improved rendering and decimation.
+
+Architecture:
+- FM/PM style synthesis engine with envelopes and anti-aliasing support
+- Renders at a higher internal sample rate and downsamples to output
+
+Data flow:
+- Input: synthesis parameters from the prediction/resynthesis scripts
+- Output: rendered waveform arrays or `.wav` files
+"""
+
 import math
 import soundfile as sf
 import numpy as np

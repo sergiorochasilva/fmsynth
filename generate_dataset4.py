@@ -1,3 +1,14 @@
+"""Generate the `dataset_big4` FM-synthesis corpus.
+
+Architecture:
+- Balanced sampling of FM parameters, curves, and synthesis settings
+- Renders audio with `fm_synth3`
+
+Data flow:
+- Input: configuration constants in the script
+- Output: `dataset_big4/parameters.csv`, `sample_*.wav`, and `meta.json`
+"""
+
 import csv
 import json
 import math

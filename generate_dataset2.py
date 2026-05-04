@@ -1,3 +1,14 @@
+"""Generate the second FM-synthesis dataset used in the experiments.
+
+Architecture:
+- Samples FM parameters with a mix of musical and random distributions
+- Renders audio with `fm_synth2`
+
+Data flow:
+- Input: configuration constants in the script
+- Output: dataset files plus a JSON summary
+"""
+
 import json
 import math
 import numpy as np

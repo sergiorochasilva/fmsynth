@@ -1,3 +1,15 @@
+"""Resynthesize `dataset_big4` audio from predicted FM parameters.
+
+Architecture:
+- Loads predicted parameter tables
+- Projects parameters into a feasible FM range
+- Uses `FMSynth3` to render the reconstructed waveform
+
+Data flow:
+- Input: predicted parameters and `dataset_big4` metadata
+- Output: synthesized `.wav` files plus comparison metrics
+"""
+
 import argparse
 import json
 import math

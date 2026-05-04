@@ -1,3 +1,14 @@
+"""Generate the third FM-synthesis dataset used in the experiments.
+
+Architecture:
+- Balanced sampling of FM parameters, curves, and synthesis settings
+- Renders audio with `fm_synth3`
+
+Data flow:
+- Input: configuration constants in the script
+- Output: CSV metadata, WAV files, and dataset summary JSON
+"""
+
 import csv
 import json
 import math
