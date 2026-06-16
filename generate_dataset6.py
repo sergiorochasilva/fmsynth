@@ -1,12 +1,13 @@
-"""Generate the `dataset_big5` FM-synthesis corpus.
+"""Generate the `dataset_big6` FM-synthesis corpus.
 
 Architecture:
 - Balanced sampling of FM parameters, curves, and synthesis settings
 - Renders audio with `fm_synth3`
+- Writes incremental WAV files plus sharded memmap-friendly `int16` audio caches
 
 Data flow:
 - Input: configuration constants in the script
-- Output: `dataset_big5/parameters.csv`, `sample_*.wav`, and `meta.json`
+- Output: `dataset_big6/parameters.csv`, `sample_*.wav`, sharded `int16` audio caches, and `meta.json`
 """
 
 import csv
@@ -24,9 +25,13 @@ from fm_synth3 import Envelope, FMSynth3, SAMPLE_RATE_OUT, SAMPLE_RATE_RENDER
 # Configuração geral
 # -------------------------
 duracao_amostras = 4.0
-tamanho_dataset = 100000
+tamanho_dataset = 50000
 precisao_decimal = 4
-output_dir = "dataset_big5"
+output_dir = "dataset_big6"
+audio_shard_dir = f"{output_dir}/audio_big6_shards"
+audio_manifest_path = f"{output_dir}/audio_big6_manifest.json"
+audio_shard_size = int(os.getenv("AUDIO_SHARD_SIZE", "256"))
+audio_sample_len = int(round(duracao_amostras * SAMPLE_RATE_OUT))
 seed = 42
 
 # Proporção entre estilos (igual ao espírito do generate_dataset2.py)
@@ -600,163 +605,89 @@ def parse_bool(v: str) -> bool:
     return str(v).strip().lower() in ("1", "true", "yes", "y")
 
 
-def generate_audio_from_csv(csv_path: str) -> None:
-    with open(csv_path, "r", encoding="utf-8", newline="") as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            sample_id = int(row["id"])
-            out_path = f"{output_dir}/sample_{sample_id}.wav"
-            if os.path.exists(out_path):
-                continue
+def build_envelope(row: dict, prefix: str) -> Envelope:
+    return Envelope(
+        float(row[f"{prefix}_attack"]),
+        float(row[f"{prefix}_decay"]),
+        float(row[f"{prefix}_sustain"]),
+        float(row[f"{prefix}_release"]),
+        curve_attack=row[f"{prefix}_curve_attack"],
+        curve_decay=row[f"{prefix}_curve_decay"],
+        curve_release=row[f"{prefix}_curve_release"],
+    )
 
-            print(f"Gerando áudio {sample_id + 1} de {tamanho_dataset}...")
 
-            fc = float(row["frequencia_base"])
-            ratio1 = float(row["ratio1"])
-            ratio2 = float(row["ratio2"])
-            ratio3 = float(row["ratio3"])
-            ratio4 = float(row["ratio4"])
-            ratio5 = float(row["ratio5"])
-            ratio_carrier = float(row["ratio_carrier"])
-            detune1 = float(row["detune1"])
-            detune2 = float(row["detune2"])
-            detune3 = float(row["detune3"])
-            detune4 = float(row["detune4"])
-            detune5 = float(row["detune5"])
-            detune_carrier = float(row["detune_carrier"])
-            index_12 = float(row["index_12"])
-            index_23 = float(row["index_23"])
-            index_3c = float(row["index_3c"])
-            index_4c = float(row["index_4c"])
-            index_5c = float(row["index_5c"])
+def build_synth_from_row(row: dict) -> tuple[FMSynth3, float, str]:
+    fm_synth = FMSynth3(
+        ratio1=float(row["ratio1"]),
+        ratio2=float(row["ratio2"]),
+        ratio3=float(row["ratio3"]),
+        ratio4=float(row["ratio4"]),
+        ratio5=float(row["ratio5"]),
+        ratio_carrier=float(row["ratio_carrier"]),
+        detune1=float(row["detune1"]),
+        detune2=float(row["detune2"]),
+        detune3=float(row["detune3"]),
+        detune4=float(row["detune4"]),
+        detune5=float(row["detune5"]),
+        detune_carrier=float(row["detune_carrier"]),
+        index_12=float(row["index_12"]),
+        index_23=float(row["index_23"]),
+        index_3c=float(row["index_3c"]),
+        index_4c=float(row["index_4c"]),
+        index_5c=float(row["index_5c"]),
+        env1=build_envelope(row, "env1"),
+        env2=build_envelope(row, "env2"),
+        env3=build_envelope(row, "env3"),
+        env4=build_envelope(row, "env4"),
+        env5=build_envelope(row, "env5"),
+        env_carrier=build_envelope(row, "env_carrier"),
+        env_scale1=float(row["env_scale1"]),
+        env_scale2=float(row["env_scale2"]),
+        env_scale3=float(row["env_scale3"]),
+        env_scale4=float(row["env_scale4"]),
+        env_scale5=float(row["env_scale5"]),
+        env_scale_carrier=float(row["env_scale_carrier"]),
+        carrier_level=float(row["carrier_level"]),
+        feedback=float(row["feedback"]),
+        lfo_rate=float(row["lfo_rate"]),
+        lfo_depth_cents=float(row["lfo_depth_cents"]),
+        key_scaling=float(row["key_scaling"]),
+        key_scaling_ref_hz=float(row["key_scaling_ref_hz"]),
+        random_phase=parse_bool(row["random_phase"]),
+        phase1=float(row["phase1"]),
+        phase2=float(row["phase2"]),
+        phase3=float(row["phase3"]),
+        phase4=float(row["phase4"]),
+        phase5=float(row["phase5"]),
+        phase_carrier=float(row["phase_carrier"]),
+        downsample_16k=parse_bool(row["downsample_16k"]),
+    )
+    return fm_synth, float(row["frequencia_base"]), row["algorithm"]
 
-            env1 = Envelope(
-                float(row["env1_attack"]),
-                float(row["env1_decay"]),
-                float(row["env1_sustain"]),
-                float(row["env1_release"]),
-                curve_attack=row["env1_curve_attack"],
-                curve_decay=row["env1_curve_decay"],
-                curve_release=row["env1_curve_release"],
-            )
-            env2 = Envelope(
-                float(row["env2_attack"]),
-                float(row["env2_decay"]),
-                float(row["env2_sustain"]),
-                float(row["env2_release"]),
-                curve_attack=row["env2_curve_attack"],
-                curve_decay=row["env2_curve_decay"],
-                curve_release=row["env2_curve_release"],
-            )
-            env3 = Envelope(
-                float(row["env3_attack"]),
-                float(row["env3_decay"]),
-                float(row["env3_sustain"]),
-                float(row["env3_release"]),
-                curve_attack=row["env3_curve_attack"],
-                curve_decay=row["env3_curve_decay"],
-                curve_release=row["env3_curve_release"],
-            )
-            env4 = Envelope(
-                float(row["env4_attack"]),
-                float(row["env4_decay"]),
-                float(row["env4_sustain"]),
-                float(row["env4_release"]),
-                curve_attack=row["env4_curve_attack"],
-                curve_decay=row["env4_curve_decay"],
-                curve_release=row["env4_curve_release"],
-            )
-            env5 = Envelope(
-                float(row["env5_attack"]),
-                float(row["env5_decay"]),
-                float(row["env5_sustain"]),
-                float(row["env5_release"]),
-                curve_attack=row["env5_curve_attack"],
-                curve_decay=row["env5_curve_decay"],
-                curve_release=row["env5_curve_release"],
-            )
-            env_carrier = Envelope(
-                float(row["env_carrier_attack"]),
-                float(row["env_carrier_decay"]),
-                float(row["env_carrier_sustain"]),
-                float(row["env_carrier_release"]),
-                curve_attack=row["env_carrier_curve_attack"],
-                curve_decay=row["env_carrier_curve_decay"],
-                curve_release=row["env_carrier_curve_release"],
-            )
 
-            env_scale1 = float(row["env_scale1"])
-            env_scale2 = float(row["env_scale2"])
-            env_scale3 = float(row["env_scale3"])
-            env_scale4 = float(row["env_scale4"])
-            env_scale5 = float(row["env_scale5"])
-            env_scale_carrier = float(row["env_scale_carrier"])
+def ensure_audio_length(signal: np.ndarray) -> np.ndarray:
+    signal = np.asarray(signal, dtype=np.float32).reshape(-1)
+    if signal.shape[0] == audio_sample_len:
+        return signal
+    if signal.shape[0] > audio_sample_len:
+        return signal[:audio_sample_len]
 
-            carrier_level = float(row["carrier_level"])
-            feedback = float(row["feedback"])
-            lfo_rate = float(row["lfo_rate"])
-            lfo_depth_cents = float(row["lfo_depth_cents"])
-            key_scaling = float(row["key_scaling"])
-            key_scaling_ref_hz = float(row["key_scaling_ref_hz"])
+    padded = np.zeros(audio_sample_len, dtype=np.float32)
+    padded[: signal.shape[0]] = signal
+    return padded
 
-            random_phase = parse_bool(row["random_phase"])
-            phase1 = float(row["phase1"])
-            phase2 = float(row["phase2"])
-            phase3 = float(row["phase3"])
-            phase4 = float(row["phase4"])
-            phase5 = float(row["phase5"])
-            phase_carrier = float(row["phase_carrier"])
-            downsample_16k = parse_bool(row["downsample_16k"])
 
-            fm_synth = FMSynth3(
-                ratio1=ratio1,
-                ratio2=ratio2,
-                ratio3=ratio3,
-                ratio4=ratio4,
-                ratio5=ratio5,
-                ratio_carrier=ratio_carrier,
-                detune1=detune1,
-                detune2=detune2,
-                detune3=detune3,
-                detune4=detune4,
-                detune5=detune5,
-                detune_carrier=detune_carrier,
-                index_12=index_12,
-                index_23=index_23,
-                index_3c=index_3c,
-                index_4c=index_4c,
-                index_5c=index_5c,
-                env1=env1,
-                env2=env2,
-                env3=env3,
-                env4=env4,
-                env5=env5,
-                env_carrier=env_carrier,
-                env_scale1=env_scale1,
-                env_scale2=env_scale2,
-                env_scale3=env_scale3,
-                env_scale4=env_scale4,
-                env_scale5=env_scale5,
-                env_scale_carrier=env_scale_carrier,
-                carrier_level=carrier_level,
-                feedback=feedback,
-                lfo_rate=lfo_rate,
-                lfo_depth_cents=lfo_depth_cents,
-                key_scaling=key_scaling,
-                key_scaling_ref_hz=key_scaling_ref_hz,
-                random_phase=random_phase,
-                phase1=phase1,
-                phase2=phase2,
-                phase3=phase3,
-                phase4=phase4,
-                phase5=phase5,
-                phase_carrier=phase_carrier,
-                downsample_16k=downsample_16k,
-            )
+def to_pcm16(signal: np.ndarray) -> np.ndarray:
+    signal = np.clip(signal, -1.0, 1.0)
+    return np.round(signal * 32767.0).astype(np.int16)
 
-            algorithm = row["algorithm"]
-            signal = fm_synth.synth(duracao_amostras, fc, algorithm=algorithm)
-            sf.write(out_path, signal, SAMPLE_RATE_OUT)
+
+def synthesize_row(row: dict) -> tuple[np.ndarray, np.ndarray]:
+    fm_synth, fc, algorithm = build_synth_from_row(row)
+    signal = fm_synth.synth(duracao_amostras, fc, algorithm=algorithm)
+    signal = ensure_audio_length(signal)
+    return signal, to_pcm16(signal)
 
 
 def count_rows(csv_path: str) -> int:
@@ -808,6 +739,156 @@ def count_audio_files() -> int:
         return 0
 
 
+def shard_filename(shard_idx: int) -> str:
+    return f"shard_{shard_idx:05d}.npy"
+
+
+def shard_path(shard_idx: int) -> str:
+    return os.path.join(audio_shard_dir, shard_filename(shard_idx))
+
+
+def load_manifest() -> dict | None:
+    if not os.path.exists(audio_manifest_path):
+        return None
+    try:
+        with open(audio_manifest_path, "r", encoding="utf-8") as f:
+            manifest = json.load(f)
+    except Exception:
+        return None
+    return manifest
+
+
+def validate_shard_file(path: str, expected_shape: tuple[int, int]) -> bool:
+    if not os.path.exists(path):
+        return False
+    try:
+        shard = np.load(path, mmap_mode="r")
+    except Exception:
+        return False
+    return shard.ndim == 2 and shard.shape == expected_shape and shard.dtype == np.int16
+
+
+def cache_is_valid(expected_rows: int) -> bool:
+    manifest = load_manifest()
+    if not manifest:
+        return False
+
+    if int(manifest.get("total_rows", -1)) != int(expected_rows):
+        return False
+    if int(manifest.get("audio_sample_len", -1)) != int(audio_sample_len):
+        return False
+    if int(manifest.get("audio_shard_size", -1)) != int(audio_shard_size):
+        return False
+    if manifest.get("dtype") != "int16":
+        return False
+
+    shards = manifest.get("shards", [])
+    if not shards:
+        return False
+
+    for shard_meta in shards:
+        if shard_meta.get("dtype") != "int16":
+            return False
+        file_name = shard_meta.get("file")
+        if not file_name:
+            return False
+        path = os.path.join(output_dir, file_name)
+        shape = shard_meta.get("shape")
+        if not isinstance(shape, list) or len(shape) != 2:
+            return False
+        if not validate_shard_file(path, (int(shape[0]), int(shape[1]))):
+            return False
+
+    return True
+
+
+def generate_missing_wavs_from_csv(csv_path: str) -> None:
+    with open(csv_path, "r", encoding="utf-8", newline="") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            sample_id = int(row["id"])
+            out_path = f"{output_dir}/sample_{sample_id}.wav"
+            if os.path.exists(out_path):
+                continue
+
+            print(f"Gerando áudio {sample_id + 1} de {tamanho_dataset}...")
+            _signal, pcm16 = synthesize_row(row)
+            sf.write(out_path, pcm16, SAMPLE_RATE_OUT, subtype="PCM_16")
+
+
+def generate_audio_shards(csv_path: str) -> None:
+    os.makedirs(audio_shard_dir, exist_ok=True)
+    n_shards = int(math.ceil(tamanho_dataset / audio_shard_size))
+
+    with open(csv_path, "r", encoding="utf-8", newline="") as f:
+        reader = csv.DictReader(f)
+        for shard_idx in range(n_shards):
+            shard_start = shard_idx * audio_shard_size
+            shard_end = min(shard_start + audio_shard_size, tamanho_dataset)
+            shard_rows = shard_end - shard_start
+            shard_file = shard_path(shard_idx)
+            tmp_file = shard_file + ".tmp"
+
+            if validate_shard_file(shard_file, (shard_rows, audio_sample_len)):
+                for _ in range(shard_rows):
+                    next(reader, None)
+                continue
+
+            shard_audio = np.empty((shard_rows, audio_sample_len), dtype=np.int16)
+
+            for local_idx in range(shard_rows):
+                row = next(reader)
+                sample_id = int(row["id"])
+                out_path = f"{output_dir}/sample_{sample_id}.wav"
+
+                print(f"Gerando áudio {sample_id + 1} de {tamanho_dataset}...")
+                _signal, pcm16 = synthesize_row(row)
+
+                if not os.path.exists(out_path):
+                    sf.write(out_path, pcm16, SAMPLE_RATE_OUT, subtype="PCM_16")
+
+                shard_audio[local_idx] = pcm16
+
+            with open(tmp_file, "wb") as shard_f:
+                np.save(shard_f, shard_audio)
+            os.replace(tmp_file, shard_file)
+
+
+def write_manifest(csv_path: str) -> None:
+    shards = []
+    n_shards = int(math.ceil(tamanho_dataset / audio_shard_size))
+    for shard_idx in range(n_shards):
+        shard_start = shard_idx * audio_shard_size
+        shard_end = min(shard_start + audio_shard_size, tamanho_dataset)
+        shard_rows = shard_end - shard_start
+        file_name = os.path.join("audio_big6_shards", shard_filename(shard_idx))
+        shards.append(
+            {
+                "index": shard_idx,
+                "file": file_name,
+                "start_row": shard_start,
+                "end_row": shard_end,
+                "shape": [shard_rows, audio_sample_len],
+                "dtype": "int16",
+            }
+        )
+
+    manifest = {
+        "output_dir": output_dir,
+        "dtype": "int16",
+        "audio_sample_len": audio_sample_len,
+        "audio_shard_size": audio_shard_size,
+        "total_rows": tamanho_dataset,
+        "total_shards": n_shards,
+        "shard_dir": os.path.basename(audio_shard_dir),
+        "csv": os.path.basename(csv_path),
+        "shards": shards,
+    }
+
+    with open(audio_manifest_path, "w", encoding="utf-8") as f:
+        json.dump(manifest, f, ensure_ascii=False, indent=2)
+
+
 def write_meta(csv_path: str) -> None:
     summary = summarize_csv(csv_path)
     meta = {
@@ -817,6 +898,11 @@ def write_meta(csv_path: str) -> None:
         "tamanho_dataset": tamanho_dataset,
         "duracao_amostras": duracao_amostras,
         "sample_rate_out": SAMPLE_RATE_OUT,
+        "audio_sample_len": audio_sample_len,
+        "audio_dtype": "int16",
+        "audio_manifest": os.path.basename(audio_manifest_path),
+        "audio_shard_dir": os.path.basename(audio_shard_dir),
+        "audio_shard_size": audio_shard_size,
         "musical_prob": MUSICAL_PROB,
         "algorithms": ALGORITHMS,
         "config": {
@@ -843,6 +929,7 @@ def write_meta(csv_path: str) -> None:
         },
         "stats": summary,
         "audio_files_present": count_audio_files(),
+        "audio_shards_present": cache_is_valid(tamanho_dataset),
     }
 
     with open(f"{output_dir}/meta.json", "w", encoding="utf-8") as f:
@@ -863,7 +950,13 @@ def main() -> None:
                 "Ajuste tamanho_dataset ou recrie o arquivo."
             )
 
-    generate_audio_from_csv(csv_path)
+    if cache_is_valid(tamanho_dataset):
+        pass
+    else:
+        generate_audio_shards(csv_path)
+
+    write_manifest(csv_path)
+    generate_missing_wavs_from_csv(csv_path)
     write_meta(csv_path)
 
 

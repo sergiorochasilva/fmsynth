@@ -1,0 +1,97 @@
+{
+  "model_name": "model_encoder_classification_training_big5_fmsynth3_0_2",
+  "encoder_name": "encoder_model_encoder_classification_training_big5_fmsynth3_0_2",
+  "dataset": "dataset_big5",
+  "n_samples": 10000,
+  "split": {
+    "fit_size": 6000,
+    "val_size": 1504,
+    "train_size": 7504,
+    "test_size": 2496,
+    "train_frac": 0.75,
+    "val_frac_of_train": 0.2,
+    "strategy": "stratified_by_algorithm"
+  },
+  "runtime_config": {
+    "batch_size": 8,
+    "pred_batch_size": 16,
+    "epochs": 120,
+    "learning_rate": 0.0003,
+    "clipnorm": 1.0,
+    "mixed_precision": false,
+    "mixed_precision_policy": "float32",
+    "disable_xla_jit": true,
+    "audio_dtype": "float32",
+    "save_split_arrays": false,
+    "save_latent_arrays": true
+  },
+  "architecture": {
+    "input": "raw_waveform",
+    "frontend": "differentiable_log_mel",
+    "encoder": "compact_2d_cnn",
+    "target": "algorithm",
+    "latent_dim": 192
+  },
+  "algorithm_label_merges": {
+    "dual_chain": "series2x2_parallel1"
+  },
+  "categorical_cols": [
+    "algorithm"
+  ],
+  "categorical_accuracy": {
+    "algorithm": 0.28525641025641024
+  },
+  "categorical_crossentropy": {
+    "algorithm": 1.7755933550407332
+  },
+  "metrics": {
+    "categorical_accuracy_mean": 0.28525641025641024,
+    "categorical_crossentropy_mean": 1.7755933550407332
+  },
+  "test_metrics_by_head": {
+    "algorithm": {
+      "accuracy": 0.28525641025641024,
+      "crossentropy": 1.7755933550407332,
+      "n_classes": 8
+    }
+  },
+  "keras_test_eval": {
+    "loss": 1.7755932807922363,
+    "sparse_categorical_accuracy": 0.28525641560554504
+  },
+  "history_last": {
+    "loss": 1.3650140762329102,
+    "sparse_categorical_accuracy": 0.453166663646698,
+    "val_loss": 1.9629935026168823,
+    "val_sparse_categorical_accuracy": 0.3125,
+    "learning_rate": 3.7500001781154424e-05
+  },
+  "best_val_loss": {
+    "epoch": 19,
+    "value": 1.7505723237991333
+  },
+  "categorical_maps": {
+    "algorithm": [
+      "parallel5",
+      "series2_parallel3",
+      "series2x2_parallel1",
+      "series3",
+      "series3_parallel1_plus1",
+      "series3_parallel2",
+      "series4_parallel1",
+      "series5"
+    ]
+  },
+  "artifacts": {
+    "model": "model_encoder_classification_training_big5_fmsynth3_0_2/model_encoder_classification_training_big5_fmsynth3_0_2.keras",
+    "encoder": "model_encoder_classification_training_big5_fmsynth3_0_2/encoder_model_encoder_classification_training_big5_fmsynth3_0_2.keras",
+    "preprocess": "model_encoder_classification_training_big5_fmsynth3_0_2/preprocess_model_encoder_classification_training_big5_fmsynth3_0_2.save",
+    "target_preprocess": "model_encoder_classification_training_big5_fmsynth3_0_2/target_preprocess_model_encoder_classification_training_big5_fmsynth3_0_2.save",
+    "results": "model_encoder_classification_training_big5_fmsynth3_0_2/results.json",
+    "history": "model_encoder_classification_training_big5_fmsynth3_0_2/train_history.csv",
+    "pred_codes": "model_encoder_classification_training_big5_fmsynth3_0_2/params_pred_test_codes.csv",
+    "pred_labels": "model_encoder_classification_training_big5_fmsynth3_0_2/params_pred_test_labels.csv",
+    "latent_train": "model_encoder_classification_training_big5_fmsynth3_0_2/latent_train.npy",
+    "latent_test": "model_encoder_classification_training_big5_fmsynth3_0_2/latent_test.npy"
+  }
+}
