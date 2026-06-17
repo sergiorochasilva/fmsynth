@@ -67,15 +67,19 @@ CAT_LOSS_WEIGHT_STYLE = float(os.getenv("CAT_LOSS_WEIGHT_STYLE", "0.15"))
 CAT_LOSS_WEIGHT_ENV_CURVE = float(os.getenv("CAT_LOSS_WEIGHT_ENV_CURVE", "0.04"))
 
 # Configuração de lote
-BATCH_SIZE = int(os.getenv("TRAIN_BATCH_SIZE", "2"))
-PRED_BATCH_SIZE = int(os.getenv("PRED_BATCH_SIZE", "4"))
+# Batch maior para ocupar mais VRAM e mirar perto de 10 GB em GPUs de 16 GB.
+BATCH_SIZE = int(os.getenv("TRAIN_BATCH_SIZE", "10"))
+PRED_BATCH_SIZE = int(os.getenv("PRED_BATCH_SIZE", "8"))
 
 # Configuração para reduzir uso de VRAM
-USE_MIXED_PRECISION = os.getenv("MIXED_PRECISION", "1") == "1"
+USE_MIXED_PRECISION = os.getenv("MIXED_PRECISION", "0") == "1"
 DISABLE_XLA_JIT = os.getenv("DISABLE_XLA_JIT", "1") == "1"
-AUDIO_DTYPE = os.getenv("AUDIO_DTYPE", "float16").strip().lower()
+AUDIO_DTYPE = os.getenv("AUDIO_DTYPE", "float32").strip().lower()
 if AUDIO_DTYPE not in {"float16", "float32"}:
     raise ValueError("AUDIO_DTYPE deve ser 'float16' ou 'float32'.")
+
+LEARNING_RATE = float(os.getenv("LEARNING_RATE", "0.0003"))
+CLIPNORM = float(os.getenv("CLIPNORM", "1.0"))
 
 ALGORITHM_MERGE_MAP = {
     # Em fm_synth3, dual_chain é implementado como alias de series2x2_parallel1.
@@ -93,7 +97,8 @@ print(
     "Runtime config: "
     f"batch_size={BATCH_SIZE}, pred_batch_size={PRED_BATCH_SIZE}, "
     f"mixed_precision={USE_MIXED_PRECISION}, policy={mixed_precision.global_policy().name}, "
-    f"disable_xla_jit={DISABLE_XLA_JIT}, audio_dtype={AUDIO_DTYPE}"
+    f"disable_xla_jit={DISABLE_XLA_JIT}, audio_dtype={AUDIO_DTYPE}, "
+    f"learning_rate={LEARNING_RATE}, clipnorm={CLIPNORM}"
 )
 
 
@@ -756,7 +761,10 @@ for col in categorical_cols:
     loss_weights[head_name] = categorical_loss_weight(col)
 
 model.compile(
-    optimizer="Nadam",
+    optimizer=tf.keras.optimizers.Nadam(
+        learning_rate=LEARNING_RATE,
+        clipnorm=CLIPNORM,
+    ),
     loss=losses,
     metrics=metrics,
     loss_weights=loss_weights,
@@ -778,6 +786,7 @@ plot_model(
 callbacks = [
     EarlyStopping(monitor="val_loss", patience=24, restore_best_weights=True),
     ReduceLROnPlateau(monitor="val_loss", factor=0.5, patience=8, min_lr=1e-6),
+    tf.keras.callbacks.TerminateOnNaN(),
 ]
 
 train_sequence = MultiHeadAudioSequence(
