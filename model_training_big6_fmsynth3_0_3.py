@@ -55,7 +55,7 @@ from tensorflow.keras.utils import plot_model
 
 import joblib
 
-BASE_PATH = "dataset_big6"
+BASE_PATH = "/workspace/dataset_big6"
 AUDIO_MANIFEST_PATH = os.path.join(BASE_PATH, "audio_big6_manifest.json")
 AUDIO_LEGACY_CACHE_PATH = os.path.join(BASE_PATH, "audio_big6_int16.npy")
 OUTPUT_DIR = "model_training_big6_fmsynth3_0_3"
