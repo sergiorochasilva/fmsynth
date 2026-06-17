@@ -89,6 +89,7 @@ LEARNING_RATE = float(os.getenv("LEARNING_RATE", "0.0003"))
 CLIPNORM = float(os.getenv("CLIPNORM", "1.0"))
 WEIGHT_DECAY = float(os.getenv("WEIGHT_DECAY", "0.00001"))
 STYLE_RESAMPLE = os.getenv("STYLE_RESAMPLE", "1") == "1"
+CAT_LABEL_SMOOTHING = float(os.getenv("CAT_LABEL_SMOOTHING", "0.02"))
 
 ALGORITHM_MERGE_MAP = {
     # Em fm_synth3, dual_chain é implementado como alias de series2x2_parallel1.
@@ -346,6 +347,23 @@ def numeric_head_loss_weight(head_name: str) -> float:
     if head_name == "other_head":
         return OTHER_HEAD_LOSS_WEIGHT
     return 1.0
+
+
+def sparse_categorical_crossentropy_smoothed(label_smoothing: float):
+    label_smoothing = float(max(label_smoothing, 0.0))
+
+    def loss_fn(y_true, y_pred):
+        y_true = tf.cast(tf.reshape(y_true, [-1]), tf.int32)
+        y_pred = tf.cast(y_pred, tf.float32)
+        num_classes = tf.shape(y_pred)[-1]
+        y_true_oh = tf.one_hot(y_true, depth=num_classes, dtype=y_pred.dtype)
+        if label_smoothing > 0.0:
+            smooth = tf.cast(label_smoothing, y_pred.dtype)
+            num_classes_f = tf.cast(num_classes, y_pred.dtype)
+            y_true_oh = y_true_oh * (1.0 - smooth) + smooth / num_classes_f
+        return tf.keras.losses.categorical_crossentropy(y_true_oh, y_pred)
+
+    return loss_fn
 
 
 def make_stratify_key(frame: pd.DataFrame) -> pd.Series | None:
@@ -891,7 +909,7 @@ if freq_col is not None:
 
 for col in categorical_cols:
     head_name = cat_output_name(col)
-    losses[head_name] = tf.keras.losses.SparseCategoricalCrossentropy(label_smoothing=0.02)
+    losses[head_name] = sparse_categorical_crossentropy_smoothed(CAT_LABEL_SMOOTHING)
     metrics[head_name] = ["sparse_categorical_accuracy"]
     loss_weights[head_name] = categorical_loss_weight(col)
 
