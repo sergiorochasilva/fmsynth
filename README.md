@@ -8,6 +8,10 @@ This repository aims to provide a reproducible path to:
 - evaluate prediction quality,
 - resynthesize audio from predicted parameters.
 
+## Experiment Report
+
+For a consolidated narrative of the experimental history, dataset evolution, model families, and reported results, see `experiments_report.md`.
+
 ## FM Synthesizers
 
 | File | Summary |
@@ -26,6 +30,7 @@ This repository aims to provide a reproducible path to:
 | `dataset_big4` | [`generate_dataset4.py`](/home/sergio/@pessoal/fmsynth/generate_dataset4.py) | Large and more controlled corpus using [`fm_synth3.py`](/home/sergio/@pessoal/fmsynth/fm_synth3.py), with `4 s` duration, `10000` samples, a parameter CSV, and balancing across algorithms, styles, and curves. It was the main basis for the `big4` models. |
 | `dataset_big5` | [`generate_dataset5.py`](/home/sergio/@pessoal/fmsynth/generate_dataset5.py) | Most recent corpus using [`fm_synth3.py`](/home/sergio/@pessoal/fmsynth/fm_synth3.py), with `4 s` duration, `10000` samples, a parameter CSV, and audio generated from a balanced schedule with incremental WAV generation. This is the current dataset for the `big5` experiments. |
 | `dataset_big6` | [`generate_dataset6.py`](/home/sergio/@pessoal/fmsynth/generate_dataset6.py) | Sharded corpus using [`fm_synth3.py`](/home/sergio/@pessoal/fmsynth/fm_synth3.py), with `4 s` duration, `10000` samples, `sample_*.wav` files, `audio_big6_manifest.json`, and `audio_big6_shards/shard_*.npy` caches for faster transfer and training. |
+| `dataset_big7` | [`generate_dataset7.py`](/home/sergio/@pessoal/fmsynth/generate_dataset7.py) | Sharded corpus using [`fm_synth3.py`](/home/sergio/@pessoal/fmsynth/fm_synth3.py), with `4 s` duration, `50000` samples, `sample_*.wav` files, `audio_big7_manifest.json`, and `audio_big7_shards/shard_*.npy` caches. It removes phase, style, envelope-curve, and carrier-level targets to reduce ambiguity. |
 
 ## Colab Notebooks
 
@@ -51,9 +56,13 @@ This repository aims to provide a reproducible path to:
 | [`model_training_big4_fmsynth3_0_4.py`](/home/sergio/@pessoal/fmsynth/model_training_big4_fmsynth3_0_4.py) | Multi-head CNN for numerical parameters, with better output organization and logs. |
 | [`model_training_big4_fmsynth3_0_5.py`](/home/sergio/@pessoal/fmsynth/model_training_big4_fmsynth3_0_5.py) | Deeper variant of the multi-head CNN architecture, adjusting pooling and shared trunk capacity. |
 | [`model_training_big4_fmsynth3_0_6.py`](/home/sergio/@pessoal/fmsynth/model_training_big4_fmsynth3_0_6.py) | More mature CNN regressor variant, with dilated blocks, parameter-type grouped heads, and per-head loss weights. |
+| [`model_training_big6_fmsynth3_0_6.py`](/home/sergio/@pessoal/fmsynth/model_training_big6_fmsynth3_0_6.py) | Resumable `dataset_big6` regressor, with automatic epoch checkpoints, auto-resume from the latest saved weights, and the same balanced waveform-only backbone as `0_5`. |
+| [`model_training_big6_fmsynth3_0_5.py`](/home/sergio/@pessoal/fmsynth/model_training_big6_fmsynth3_0_5.py) | Balanced local `dataset_big6` regressor, with a wider waveform-only backbone, multi-kernel stem, deeper heads, and a higher default batch to push GPU usage closer to the 3.5 GB range. |
+| [`model_training_big6_fmsynth3_0_4.py`](/home/sergio/@pessoal/fmsynth/model_training_big6_fmsynth3_0_4.py) | Lightweight local-friendly `dataset_big6` regressor, with a compact waveform-only backbone, small batch defaults, mixed precision, and fallback to the full CSV when `meta.json` is missing. |
 | [`model_training_big6_fmsynth3_0_3.py`](/home/sergio/@pessoal/fmsynth/model_training_big6_fmsynth3_0_3.py) | Hybrid `dataset_big6` regressor with a waveform tower plus a log-mel spectrogram tower, wider heads, stronger categorical weighting, and a larger default batch to use more VRAM with better prediction quality. |
 | [`model_training_big6_fmsynth3_0_2.py`](/home/sergio/@pessoal/fmsynth/model_training_big6_fmsynth3_0_2.py) | Quality-oriented `dataset_big6` regressor, with a residual multiscale backbone, stratified splits, style-resampled training batches, AdamW, and smoothed categorical losses. |
 | [`model_training_big6_fmsynth3_0_1.py`](/home/sergio/@pessoal/fmsynth/model_training_big6_fmsynth3_0_1.py) | Deeper sharded multi-head CNN regressor for `dataset_big6`, consuming the audio shards via a lazy loader, with smaller kernels, later downsampling, and a larger default batch size tuned to push VRAM usage closer to 10 GB on 16 GB cards. |
+| [`model_training_big7_fmsynth3_0_1.py`](/home/sergio/@pessoal/fmsynth/model_training_big7_fmsynth3_0_1.py) | Leaner `dataset_big7` regressor, trained on a simplified target set without phase, style, envelope-curve, or carrier-level outputs, while keeping the balanced waveform backbone and resumable checkpoints. |
 | [`tcn_training_big4_fmsynth3_0_1.py`](/home/sergio/@pessoal/fmsynth/tcn_training_big4_fmsynth3_0_1.py) | TCN-based regressor focused on longer temporal dependencies in the waveform. |
 | [`rnn_training_big4_fmsynth3_0_1.py`](/home/sergio/@pessoal/fmsynth/rnn_training_big4_fmsynth3_0_1.py) | BiGRU regressor over frame sequences, used as a comparison against the CNN models. |
 | [`autoencoder_training_big4_fmsynth3_0_1.py`](/home/sergio/@pessoal/fmsynth/autoencoder_training_big4_fmsynth3_0_1.py) | Raw-waveform autoencoder with a CNN encoder and MLP decoder. It learns a reusable latent representation. |
@@ -79,7 +88,7 @@ This repository aims to provide a reproducible path to:
 | [`pred_nsynth_big4_fmsynth3_0_2.py`](/home/sergio/@pessoal/fmsynth/pred_nsynth_big4_fmsynth3_0_2.py), [`pred_nsynth_big4_fmsynth3_0_4.py`](/home/sergio/@pessoal/fmsynth/pred_nsynth_big4_fmsynth3_0_4.py) | Prediction variants for the `big4` models. |
 | [`resynth_nsynth.py`](/home/sergio/@pessoal/fmsynth/resynth_nsynth.py) | Reconstructs audio from predicted parameters and compares it with the originals. |
 | [`resynth_nsynth_big4_fmsynth3_0_2.py`](/home/sergio/@pessoal/fmsynth/resynth_nsynth_big4_fmsynth3_0_2.py), [`resynth_nsynth_big4_fmsynth3_0_4.py`](/home/sergio/@pessoal/fmsynth/resynth_nsynth_big4_fmsynth3_0_4.py) | Resynthesis variants for the `big4` models. |
-| [`generate_dataset.py`](/home/sergio/@pessoal/fmsynth/generate_dataset.py), [`generate_dataset2.py`](/home/sergio/@pessoal/fmsynth/generate_dataset2.py), [`generate_dataset3.py`](/home/sergio/@pessoal/fmsynth/generate_dataset3.py), [`generate_dataset4.py`](/home/sergio/@pessoal/fmsynth/generate_dataset4.py), [`generate_dataset5.py`](/home/sergio/@pessoal/fmsynth/generate_dataset5.py), [`generate_dataset6.py`](/home/sergio/@pessoal/fmsynth/generate_dataset6.py) | Dataset generators used by the experiments. |
+| [`generate_dataset.py`](/home/sergio/@pessoal/fmsynth/generate_dataset.py), [`generate_dataset2.py`](/home/sergio/@pessoal/fmsynth/generate_dataset2.py), [`generate_dataset3.py`](/home/sergio/@pessoal/fmsynth/generate_dataset3.py), [`generate_dataset4.py`](/home/sergio/@pessoal/fmsynth/generate_dataset4.py), [`generate_dataset5.py`](/home/sergio/@pessoal/fmsynth/generate_dataset5.py), [`generate_dataset6.py`](/home/sergio/@pessoal/fmsynth/generate_dataset6.py), [`generate_dataset7.py`](/home/sergio/@pessoal/fmsynth/generate_dataset7.py) | Dataset generators used by the experiments. |
 
 ## Suggested Reproducibility Flow
 
