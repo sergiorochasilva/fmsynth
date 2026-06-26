@@ -1,0 +1,9 @@
+{
+  "frame_length": 1024,
+  "frame_step": 256,
+  "fft_length": 1024,
+  "feature_shape": [
+    3072,
+    513
+  ]
+}

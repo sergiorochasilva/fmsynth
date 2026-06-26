@@ -8,7 +8,14 @@ dataset_big4_encoded/
 dataset_big5/
 dataset_big6/
 dataset_big7/
+dataset_big8/
+dataset_big9/
+dataset_big10/
+dataset_big11/
+dataset_big12/
 nsynth-pred/
+nsynth-pred-v2/
+nsynth-pred-0_2/
 nsynth-test/
 
 *.pyc

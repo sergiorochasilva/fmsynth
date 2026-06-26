@@ -1,0 +1,9 @@
+{
+  "model_name": "model_training_big8_fmsynth3_0_1",
+  "dataset": "dataset_big8",
+  "target_preset": "minimal",
+  "model_variant": "logmel",
+  "best_model_path": "model_training_big8_fmsynth3_0_1/best.weights.h5",
+  "best_val_loss": 1.1059685945510864,
+  "epochs_ran": 18
+}

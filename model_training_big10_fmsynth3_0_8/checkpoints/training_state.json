@@ -1,0 +1,8 @@
+{
+  "model_name": "model_training_big10_fmsynth3_0_10",
+  "dataset": "dataset_big10",
+  "last_completed_epoch": 5,
+  "total_epochs_target": 6,
+  "best_val_loss": 2.5932021141052246,
+  "best_val_loss_epoch": 5
+}

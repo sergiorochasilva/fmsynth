@@ -1,0 +1,8 @@
+{
+  "algorithm": [
+    "parallel5",
+    "series2x2_parallel1",
+    "series3",
+    "series3_parallel2"
+  ]
+}
