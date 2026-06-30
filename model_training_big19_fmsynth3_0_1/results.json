@@ -1,0 +1,37 @@
+{
+  "model_name": "model_training_big19_fmsynth3_0_1",
+  "dataset": "dataset_big19",
+  "target_group": "algorithm",
+  "runtime_config": {
+    "epochs": 36,
+    "batch_size": 12,
+    "pred_batch_size": 24,
+    "learning_rate": 0.0002,
+    "dropout": 0.08,
+    "base_filters": 48,
+    "cnn_blocks": 4,
+    "dense_units": 256,
+    "n_fft_small": 512,
+    "n_fft_large": 1024,
+    "hop_length": 512,
+    "n_mels": 48,
+    "mel_fmin": 30.0,
+    "mel_fmax": 7600.0,
+    "mixed_precision": 0,
+    "resume_training": 1
+  },
+  "train_size": 16000,
+  "val_size": 2400,
+  "test_size": 4000,
+  "available_samples": 20000,
+  "algorithm_classes": [
+    "parallel5",
+    "series2x2_parallel1",
+    "series3",
+    "series3_parallel2"
+  ],
+  "final_metrics": {
+    "algorithm_accuracy": 0.669,
+    "algorithm_crossentropy": 0.8114451169967651
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "model_name": "model_training_big15_fmsynth3_0_2_algorithm",
+  "dataset": "dataset_big13",
+  "target_group": "algorithm",
+  "last_completed_epoch": 27,
+  "total_epochs_target": 30,
+  "best_val_loss": 0.7797354459762573,
+  "best_val_loss_epoch": 22
+}

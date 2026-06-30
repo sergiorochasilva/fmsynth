@@ -1,0 +1,9 @@
+{
+  "model_name": "model_training_big18_fmsynth3_0_1_timbre",
+  "dataset": "dataset_big18",
+  "target_group": "timbre",
+  "last_completed_epoch": 19,
+  "total_epochs_target": 20,
+  "best_val_loss": 2.8578200340270996,
+  "best_val_loss_epoch": 15
+}

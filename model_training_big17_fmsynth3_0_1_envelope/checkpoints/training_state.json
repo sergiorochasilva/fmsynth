@@ -1,0 +1,9 @@
+{
+  "model_name": "model_training_big17_fmsynth3_0_1_envelope",
+  "dataset": "dataset_big13",
+  "target_group": "envelope",
+  "last_completed_epoch": 29,
+  "total_epochs_target": 30,
+  "best_val_loss": 0.3361589014530182,
+  "best_val_loss_epoch": 28
+}

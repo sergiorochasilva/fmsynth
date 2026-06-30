@@ -1,0 +1,9 @@
+{
+  "model_name": "model_training_big16_fmsynth3_0_2_exact",
+  "dataset": "dataset_big16",
+  "target_group": "exact",
+  "last_completed_epoch": 24,
+  "total_epochs_target": 30,
+  "best_val_loss": 0.4764620065689087,
+  "best_val_loss_epoch": 19
+}

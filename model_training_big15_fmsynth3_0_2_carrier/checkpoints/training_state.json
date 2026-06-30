@@ -1,0 +1,9 @@
+{
+  "model_name": "model_training_big15_fmsynth3_0_2_carrier",
+  "dataset": "dataset_big13",
+  "target_group": "carrier",
+  "last_completed_epoch": 29,
+  "total_epochs_target": 30,
+  "best_val_loss": 0.28313830494880676,
+  "best_val_loss_epoch": 29
+}

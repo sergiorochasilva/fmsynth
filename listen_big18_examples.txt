@@ -1,0 +1,12 @@
+# Five pairs selected for quick auditory comparison.
+# The fifth pair is the worst of the five and is useful to hear the failure mode.
+1. original: nsynth-test/audio/bass_electronic_018-023-075.wav
+   resynth:  nsynth-pred-big18_0_1/bass_electronic_018-023-075.wav
+2. original: nsynth-test/audio/guitar_acoustic_010-051-100.wav
+   resynth:  nsynth-pred-big18_0_1/guitar_acoustic_010-051-100.wav
+3. original: nsynth-test/audio/brass_acoustic_006-025-025.wav
+   resynth:  nsynth-pred-big18_0_1/brass_acoustic_006-025-025.wav
+4. original: nsynth-test/audio/keyboard_acoustic_004-090-100.wav
+   resynth:  nsynth-pred-big18_0_1/keyboard_acoustic_004-090-100.wav
+5. original: nsynth-test/audio/flute_synthetic_000-061-050.wav
+   resynth:  nsynth-pred-big18_0_1/flute_synthetic_000-061-050.wav

@@ -1,0 +1,9 @@
+{
+  "model_name": "model_training_big17_fmsynth3_0_2_pitch",
+  "dataset": "dataset_big13",
+  "target_group": "pitch",
+  "last_completed_epoch": 35,
+  "total_epochs_target": 36,
+  "best_val_loss": 0.2942570745944977,
+  "best_val_loss_epoch": 32
+}

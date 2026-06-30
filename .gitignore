@@ -6,6 +6,7 @@ dataset_big3/
 dataset_big4/
 dataset_big4_encoded/
 dataset_big5/
+dataset_big5_encoded/
 dataset_big6/
 dataset_big7/
 dataset_big8/
@@ -13,10 +14,22 @@ dataset_big9/
 dataset_big10/
 dataset_big11/
 dataset_big12/
+dataset_big13/
+dataset_big16/
+dataset_big18/
+dataset_big19/
+dataset_big24/
 nsynth-pred/
 nsynth-pred-v2/
 nsynth-pred-0_2/
 nsynth-test/
+nsynth-pred-big13_0_2/
+nsynth-pred-big16_0_1/
+nsynth-pred-big16_0_2/
+nsynth-pred-big17_0_1/
+nsynth-pred-big17_0_2/
+nsynth-pred-big18_0_1/
+nsynth-pred-fixed/
 
 *.pyc
 

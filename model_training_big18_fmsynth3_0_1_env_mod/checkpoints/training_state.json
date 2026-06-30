@@ -1,0 +1,9 @@
+{
+  "model_name": "model_training_big18_fmsynth3_0_1_env_mod",
+  "dataset": "dataset_big18",
+  "target_group": "env_mod",
+  "last_completed_epoch": 19,
+  "total_epochs_target": 20,
+  "best_val_loss": 0.26478058099746704,
+  "best_val_loss_epoch": 19
+}

@@ -19,6 +19,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import soundfile as sf
+import joblib
 
 from model_training_big12_fmsynth3_0_1 import build_model, logmel_frontend
 
@@ -88,6 +89,8 @@ def main() -> None:
     args = parse_args()
     model_path = args.model_dir / f"{MODEL_NAME}.keras"
     weights_path = args.model_dir / "checkpoints" / "best.weights.h5"
+    ratio_scaler_path = args.model_dir / "ratio_log2_scaler.joblib"
+    freq_scaler_path = args.model_dir / "freq_log2_scaler.joblib"
     results_path = args.model_dir / "results.json"
 
     if not args.examples_json.exists():
@@ -105,6 +108,14 @@ def main() -> None:
 
     if not algorithm_classes:
         algorithm_classes = sorted(pd.read_csv(args.model_dir / "y_train_big12.csv")["algorithm"].unique().tolist())
+
+    if not ratio_scaler_path.exists() or not freq_scaler_path.exists():
+        raise FileNotFoundError(
+            f"Missing scalers: {ratio_scaler_path} / {freq_scaler_path}. "
+            "The prediction script requires the saved StandardScaler artifacts."
+        )
+    ratio_scaler = joblib.load(ratio_scaler_path)
+    freq_scaler = joblib.load(freq_scaler_path)
 
     if model_path.exists():
         print(f"Carregando modelo: {model_path}")
@@ -133,8 +144,8 @@ def main() -> None:
 
     preds = model.predict(x, batch_size=args.batch_size, verbose=1)
     algo_pred = np.asarray(preds[0], dtype=np.float32)
-    ratio_log2_pred = np.asarray(preds[1], dtype=np.float32).reshape(-1)
-    freq_log2_pred = np.asarray(preds[2], dtype=np.float32).reshape(-1)
+    ratio_log2_pred = ratio_scaler.inverse_transform(np.asarray(preds[1], dtype=np.float32)).reshape(-1)
+    freq_log2_pred = freq_scaler.inverse_transform(np.asarray(preds[2], dtype=np.float32)).reshape(-1)
 
     algo_idx = np.argmax(algo_pred, axis=1)
     algo_name = [algorithm_classes[i] for i in algo_idx]

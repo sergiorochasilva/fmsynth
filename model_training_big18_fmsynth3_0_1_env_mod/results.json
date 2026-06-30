@@ -1,0 +1,76 @@
+{
+  "model_name": "model_training_big18_fmsynth3_0_1_env_mod",
+  "dataset": "dataset_big18",
+  "target_group": "env_mod",
+  "runtime_config": {
+    "epochs": 20,
+    "batch_size": 4,
+    "pred_batch_size": 4,
+    "learning_rate": 0.0002,
+    "dropout": 0.1,
+    "base_filters": 24,
+    "cnn_blocks": 3,
+    "dense_units": 128,
+    "n_fft_small": 512,
+    "n_fft_large": 1024,
+    "hop_length": 512,
+    "n_mels": 48,
+    "mel_fmin": 30.0,
+    "mel_fmax": 7600.0,
+    "mixed_precision": 0,
+    "resume_training": 1
+  },
+  "train_size": 3276,
+  "val_size": 492,
+  "test_size": 820,
+  "available_samples": 4096,
+  "algorithm_classes": [
+    "parallel5",
+    "series2x2_parallel1",
+    "series3",
+    "series3_parallel2"
+  ],
+  "final_metrics": {
+    "env_mod_attack_head_mae": 0.00413905456662178,
+    "env_mod_attack_head_rmse": 0.007307631863721164,
+    "env_mod_attack_head_log2_mae": 0.6219794154167175,
+    "env_mod_decay_head_mae": 0.017542755231261253,
+    "env_mod_decay_head_rmse": 0.027908457635280572,
+    "env_mod_decay_head_log2_mae": 0.2623652517795563,
+    "env_mod_sustain_head_mae": 0.07420901209115982,
+    "env_mod_sustain_head_rmse": 0.10179542461424748,
+    "env_mod_release_head_mae": 0.012224060483276844,
+    "env_mod_release_head_rmse": 0.01910625465833152,
+    "env_mod_release_head_log2_mae": 0.24850724637508392
+  },
+  "target_specs": [
+    {
+      "head": "env_mod_attack_head",
+      "column": "env_mod_attack",
+      "transform": "log2",
+      "loss_weight": 0.8,
+      "group": "env_mod"
+    },
+    {
+      "head": "env_mod_decay_head",
+      "column": "env_mod_decay",
+      "transform": "log2",
+      "loss_weight": 0.8,
+      "group": "env_mod"
+    },
+    {
+      "head": "env_mod_sustain_head",
+      "column": "env_mod_sustain",
+      "transform": "identity",
+      "loss_weight": 0.7,
+      "group": "env_mod"
+    },
+    {
+      "head": "env_mod_release_head",
+      "column": "env_mod_release",
+      "transform": "log2",
+      "loss_weight": 0.8,
+      "group": "env_mod"
+    }
+  ]
+}

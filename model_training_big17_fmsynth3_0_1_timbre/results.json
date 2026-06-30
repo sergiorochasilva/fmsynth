@@ -1,0 +1,127 @@
+{
+  "model_name": "model_training_big17_fmsynth3_0_1_timbre",
+  "dataset": "dataset_big13",
+  "target_group": "timbre",
+  "runtime_config": {
+    "epochs": 30,
+    "batch_size": 4,
+    "pred_batch_size": 4,
+    "learning_rate": 0.0002,
+    "dropout": 0.1,
+    "base_filters": 40,
+    "cnn_blocks": 4,
+    "dense_units": 192,
+    "n_fft_small": 512,
+    "n_fft_large": 1024,
+    "hop_length": 512,
+    "n_mels": 48,
+    "mel_fmin": 30.0,
+    "mel_fmax": 7600.0,
+    "mixed_precision": 0,
+    "resume_training": 0
+  },
+  "train_size": 40000,
+  "val_size": 6000,
+  "test_size": 10000,
+  "available_samples": 50000,
+  "algorithm_classes": [
+    "parallel5",
+    "series2x2_parallel1",
+    "series3",
+    "series3_parallel2"
+  ],
+  "final_metrics": {
+    "detune_carrier_head_mae": 5.991872787475586,
+    "detune_carrier_head_rmse": 6.9124600897356,
+    "index_12_head_mae": 1.2138545513153076,
+    "index_12_head_rmse": 1.4924971174407164,
+    "index_23_head_mae": 1.0907076597213745,
+    "index_23_head_rmse": 1.3789559590400433,
+    "index_3c_head_mae": 1.0923300981521606,
+    "index_3c_head_rmse": 1.3559750537546882,
+    "index_4c_head_mae": 1.180371642112732,
+    "index_4c_head_rmse": 1.447481002946495,
+    "index_5c_head_mae": 1.0781532526016235,
+    "index_5c_head_rmse": 1.3577883877385628,
+    "feedback_head_mae": 0.11209382116794586,
+    "feedback_head_rmse": 0.12963271621271077,
+    "lfo_rate_head_mae": 1.3037469387054443,
+    "lfo_rate_head_rmse": 1.916580910077223,
+    "lfo_depth_cents_head_mae": 4.241976737976074,
+    "lfo_depth_cents_head_rmse": 5.547505603459104,
+    "key_scaling_head_mae": 0.17472173273563385,
+    "key_scaling_head_rmse": 0.20935899367284563
+  },
+  "target_specs": [
+    {
+      "head": "detune_carrier_head",
+      "column": "detune_carrier",
+      "transform": "identity",
+      "loss_weight": 0.65,
+      "group": "timbre"
+    },
+    {
+      "head": "index_12_head",
+      "column": "index_12",
+      "transform": "identity",
+      "loss_weight": 0.7,
+      "group": "timbre"
+    },
+    {
+      "head": "index_23_head",
+      "column": "index_23",
+      "transform": "identity",
+      "loss_weight": 0.7,
+      "group": "timbre"
+    },
+    {
+      "head": "index_3c_head",
+      "column": "index_3c",
+      "transform": "identity",
+      "loss_weight": 0.7,
+      "group": "timbre"
+    },
+    {
+      "head": "index_4c_head",
+      "column": "index_4c",
+      "transform": "identity",
+      "loss_weight": 0.7,
+      "group": "timbre"
+    },
+    {
+      "head": "index_5c_head",
+      "column": "index_5c",
+      "transform": "identity",
+      "loss_weight": 0.7,
+      "group": "timbre"
+    },
+    {
+      "head": "feedback_head",
+      "column": "feedback",
+      "transform": "identity",
+      "loss_weight": 0.55,
+      "group": "timbre"
+    },
+    {
+      "head": "lfo_rate_head",
+      "column": "lfo_rate",
+      "transform": "identity",
+      "loss_weight": 0.55,
+      "group": "timbre"
+    },
+    {
+      "head": "lfo_depth_cents_head",
+      "column": "lfo_depth_cents",
+      "transform": "identity",
+      "loss_weight": 0.55,
+      "group": "timbre"
+    },
+    {
+      "head": "key_scaling_head",
+      "column": "key_scaling",
+      "transform": "identity",
+      "loss_weight": 0.55,
+      "group": "timbre"
+    }
+  ]
+}

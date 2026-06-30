@@ -1,0 +1,46 @@
+{
+  "model_name": "model_training_big15_fmsynth3_0_1_algorithm",
+  "dataset": "dataset_big13",
+  "target_group": "algorithm",
+  "runtime_config": {
+    "epochs": 30,
+    "batch_size": 8,
+    "pred_batch_size": 12,
+    "learning_rate": 0.0002,
+    "dropout": 0.1,
+    "base_filters": 40,
+    "cnn_blocks": 4,
+    "dense_units": 192,
+    "n_fft_small": 512,
+    "n_fft_large": 1024,
+    "hop_length": 512,
+    "n_mels": 48,
+    "mel_fmin": 30.0,
+    "mel_fmax": 7600.0,
+    "mixed_precision": 0,
+    "resume_training": 1
+  },
+  "train_size": 3276,
+  "val_size": 492,
+  "test_size": 820,
+  "available_samples": 4096,
+  "algorithm_classes": [
+    "parallel5",
+    "series2x2_parallel1",
+    "series3",
+    "series3_parallel2"
+  ],
+  "final_metrics": {
+    "algorithm_accuracy": 0.39878048780487807,
+    "algorithm_crossentropy": 1.2569061517715454
+  },
+  "target_specs": [
+    {
+      "head": "algorithm_head",
+      "column": "algorithm",
+      "transform": "categorical",
+      "loss_weight": 1.0,
+      "group": "algorithm"
+    }
+  ]
+}

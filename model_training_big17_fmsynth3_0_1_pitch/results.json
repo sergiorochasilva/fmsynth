@@ -1,0 +1,57 @@
+{
+  "model_name": "model_training_big17_fmsynth3_0_1_pitch",
+  "dataset": "dataset_big13",
+  "target_group": "pitch",
+  "runtime_config": {
+    "epochs": 30,
+    "batch_size": 4,
+    "pred_batch_size": 4,
+    "learning_rate": 0.0002,
+    "dropout": 0.1,
+    "base_filters": 40,
+    "cnn_blocks": 4,
+    "dense_units": 192,
+    "n_fft_small": 512,
+    "n_fft_large": 1024,
+    "hop_length": 512,
+    "n_mels": 48,
+    "mel_fmin": 30.0,
+    "mel_fmax": 7600.0,
+    "mixed_precision": 0,
+    "resume_training": 0
+  },
+  "train_size": 40000,
+  "val_size": 6000,
+  "test_size": 10000,
+  "available_samples": 50000,
+  "algorithm_classes": [
+    "parallel5",
+    "series2x2_parallel1",
+    "series3",
+    "series3_parallel2"
+  ],
+  "final_metrics": {
+    "ratio_log2_head_mae": 0.1506601870059967,
+    "ratio_log2_head_rmse": 0.2895475905244202,
+    "ratio_log2_head_log2_mae": 0.20545566082000732,
+    "freq_log2_head_mae": 25.346553802490234,
+    "freq_log2_head_rmse": 40.21924169279861,
+    "freq_log2_head_log2_mae": 0.12853117287158966
+  },
+  "target_specs": [
+    {
+      "head": "ratio_log2_head",
+      "column": "ratio_carrier",
+      "transform": "log2",
+      "loss_weight": 0.9,
+      "group": "pitch"
+    },
+    {
+      "head": "freq_log2_head",
+      "column": "frequencia_base",
+      "transform": "log2",
+      "loss_weight": 0.9,
+      "group": "pitch"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "model_name": "model_training_big15_fmsynth3_0_1_modulators",
+  "dataset": "dataset_big13",
+  "target_group": "modulators",
+  "last_completed_epoch": 29,
+  "total_epochs_target": 30,
+  "best_val_loss": 3.13112735748291,
+  "best_val_loss_epoch": 28
+}

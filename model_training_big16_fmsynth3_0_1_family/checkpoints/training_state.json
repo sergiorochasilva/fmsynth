@@ -1,0 +1,9 @@
+{
+  "model_name": "model_training_big16_fmsynth3_0_1_family",
+  "dataset": "dataset_big16",
+  "target_group": "family",
+  "last_completed_epoch": 20,
+  "total_epochs_target": 30,
+  "best_val_loss": 0.4534739553928375,
+  "best_val_loss_epoch": 15
+}

@@ -1,0 +1,30 @@
+{
+  "model": {
+    "count": 4096,
+    "fft_distance_mean": 17207.711583018303,
+    "stft_distance_mean": 3358.8388555943966,
+    "log_mel_spectrogram_distance_raw_mean": 1083.5251845642924,
+    "log_mel_spectrogram_distance_normalized_mean": 0.36698702227752905
+  },
+  "pitch_baseline": {
+    "count": 4096,
+    "fft_distance_mean": 33355.782839775085,
+    "stft_distance_mean": 6526.77640748024,
+    "log_mel_spectrogram_distance_raw_mean": 1103.0300915241241,
+    "log_mel_spectrogram_distance_normalized_mean": 0.3181767021588867
+  },
+  "baseline_440": {
+    "count": 4096,
+    "fft_distance_mean": 33508.80603647232,
+    "stft_distance_mean": 7290.345971822739,
+    "log_mel_spectrogram_distance_raw_mean": 1092.0842129439116,
+    "log_mel_spectrogram_distance_normalized_mean": 0.32752411672893644
+  },
+  "harmonic_baseline": {
+    "count": 4096,
+    "fft_distance_mean": 26228.547420978546,
+    "stft_distance_mean": 4783.1553891301155,
+    "log_mel_spectrogram_distance_raw_mean": 1139.1530724689364,
+    "log_mel_spectrogram_distance_normalized_mean": 0.347818510181756
+  }
+}

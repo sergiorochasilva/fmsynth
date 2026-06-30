@@ -1,0 +1,22 @@
+{
+  "exact_classes": [
+    "parallel5",
+    "series2x2_parallel1",
+    "series3",
+    "series3_parallel2"
+  ],
+  "exact_mapping": {
+    "parallel5": 0,
+    "series2x2_parallel1": 1,
+    "series3": 2,
+    "series3_parallel2": 3
+  },
+  "family_classes": [
+    "parallel",
+    "series"
+  ],
+  "family_mapping": {
+    "parallel": 0,
+    "series": 1
+  }
+}

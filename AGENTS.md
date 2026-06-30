@@ -118,3 +118,12 @@ If you add a new experiment, new dataset, or new evaluation path, update the REA
   - evaluation,
   - README update.
 
+## GPU Recovery Notes
+
+- If TensorFlow reports `CUDA_ERROR_NO_DEVICE` or `nvidia-smi` fails even though the NVIDIA kernel modules are loaded, check whether `/dev/nvidia*` exists.
+- In this repository, a common recovery step on the host is:
+  - `nvidia-modprobe -c 0 -c 255 -m`
+  - then `ls -l /dev/nvidia*`
+  - then `nvidia-smi`
+- If the device nodes exist and `nvidia-smi` works, TensorFlow should usually see `GPU:0` on the next run.
+- If `/dev/nvidia*` disappears again after reboot, the issue is at the host driver/device-node layer, not in the training script.

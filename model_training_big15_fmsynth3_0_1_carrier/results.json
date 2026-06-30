@@ -1,0 +1,66 @@
+{
+  "model_name": "model_training_big15_fmsynth3_0_1_carrier",
+  "dataset": "dataset_big13",
+  "target_group": "carrier",
+  "runtime_config": {
+    "epochs": 30,
+    "batch_size": 8,
+    "pred_batch_size": 12,
+    "learning_rate": 0.0002,
+    "dropout": 0.1,
+    "base_filters": 40,
+    "cnn_blocks": 4,
+    "dense_units": 192,
+    "n_fft_small": 512,
+    "n_fft_large": 1024,
+    "hop_length": 512,
+    "n_mels": 48,
+    "mel_fmin": 30.0,
+    "mel_fmax": 7600.0,
+    "mixed_precision": 0,
+    "resume_training": 1
+  },
+  "train_size": 3276,
+  "val_size": 492,
+  "test_size": 820,
+  "available_samples": 4096,
+  "algorithm_classes": [
+    "parallel5",
+    "series2x2_parallel1",
+    "series3",
+    "series3_parallel2"
+  ],
+  "final_metrics": {
+    "ratio_log2_head_mae": 0.3620535135269165,
+    "ratio_log2_head_rmse": 0.6676301153573039,
+    "ratio_log2_head_log2_mae": 0.46555817127227783,
+    "freq_log2_head_mae": 44.586570739746094,
+    "freq_log2_head_rmse": 71.04279767550332,
+    "freq_log2_head_log2_mae": 0.21041472256183624,
+    "detune_carrier_head_mae": 6.115330696105957,
+    "detune_carrier_head_rmse": 7.0995524198196875
+  },
+  "target_specs": [
+    {
+      "head": "ratio_log2_head",
+      "column": "ratio_carrier",
+      "transform": "log2",
+      "loss_weight": 0.85,
+      "group": "carrier"
+    },
+    {
+      "head": "freq_log2_head",
+      "column": "frequencia_base",
+      "transform": "log2",
+      "loss_weight": 0.85,
+      "group": "carrier"
+    },
+    {
+      "head": "detune_carrier_head",
+      "column": "detune_carrier",
+      "transform": "identity",
+      "loss_weight": 0.55,
+      "group": "carrier"
+    }
+  ]
+}

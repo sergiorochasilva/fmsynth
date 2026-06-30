@@ -1,0 +1,38 @@
+{
+  "exact_classes": [
+    "parallel5",
+    "series2x2_parallel1",
+    "series3",
+    "series3_parallel2"
+  ],
+  "exact_mapping": {
+    "parallel5": 0,
+    "series2x2_parallel1": 1,
+    "series3": 2,
+    "series3_parallel2": 3
+  },
+  "family_classes": [
+    "parallel",
+    "series"
+  ],
+  "family_mapping": {
+    "parallel": 0,
+    "series": 1
+  },
+  "series_exact_classes": [
+    "series3",
+    "series3_parallel2"
+  ],
+  "series_exact_mapping": {
+    "series3": 0,
+    "series3_parallel2": 1
+  },
+  "parallel_exact_classes": [
+    "parallel5",
+    "series2x2_parallel1"
+  ],
+  "parallel_exact_mapping": {
+    "parallel5": 0,
+    "series2x2_parallel1": 1
+  }
+}
